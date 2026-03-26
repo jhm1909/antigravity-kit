@@ -5,12 +5,46 @@ description: Git commit and push with Conventional Commits, branch safety, and p
 # Git Commit & Push
 
 > [!IMPORTANT]
-> Uses **Conventional Commits** format. Always reviews changes before committing.
-> Works with any project — auto-detects scopes from directory structure.
+> Uses **Conventional Commits** format. Works with any project.
+> 3 modes: ⚡ Quick, 🛡️ Safe, 🎛️ Custom.
 
 ---
 
-## Step 0: Branch Safety Check
+## Step 0: Choose Mode
+
+Present to user:
+
+```
+How would you like to commit?
+
+⚡ 1. Quick — stage all, auto-generate message, push (fastest)
+🛡️ 2. Safe — full checks: branch, .gitignore, protected files (recommended)
+🎛️ 3. Custom — you control each step
+```
+
+- If user says "nhanh" / "quick" / "go" → **Quick**
+- If user says "an toàn" / "safe" → **Safe**
+- If user says "tùy biến" / "custom" → **Custom**
+- Default (no preference): **Safe**
+
+### Mode Behavior Matrix
+
+| Step | ⚡ Quick | 🛡️ Safe | 🎛️ Custom |
+|------|---------|---------|-----------|
+| Branch check | Skip | ✅ Check + suggest branch | ✅ Check + ask user |
+| Diff summary | Show brief | ✅ Full summary + scope table | ✅ Full + ask scope grouping |
+| File selection | All at once | All (ask if >15 files) | ✅ Always ask |
+| .gitignore check | Skip | ✅ Auto-check + warn | ✅ Check + show details |
+| Protected files | Skip | ✅ Auto-check + confirm | ✅ List every file for approval |
+| Commit message | Auto-generate, no confirm | Auto-generate, show for confirm | ✅ User writes or edits |
+| Push | Auto push | Auto push | ✅ Ask push/PR/keep local |
+
+---
+
+## Step 1: Branch Safety Check
+
+> **⚡ Quick**: skip this step entirely
+> **🛡️ Safe / 🎛️ Custom**: execute
 
 // turbo
 
@@ -20,22 +54,19 @@ git branch --show-current
 
 **If on `main` or `master`:**
 
-Present options to user:
-
 ```
 ⚠️ You are on the main branch.
 1. Create a new branch and commit there (recommended)
-2. Commit directly to main (small changes only)
+2. Commit directly to main
 ```
 
-- If user picks **Option 1**: ask for branch name or auto-suggest from changes (e.g. `feat/add-auth-module`), then:
+- **🛡️ Safe**: For > 5 files, strongly recommend Option 1. For ≤ 5 files, default to Option 2.
+- **🎛️ Custom**: Always ask. If Option 1: ask for branch name or auto-suggest (e.g. `feat/add-auth`), then:
   ```bash
   git checkout -b <branch-name>
   ```
-- If user picks **Option 2** or says "trực tiếp" / "directly": proceed on main.
-- For < 3 files changed, default to Option 2.
 
-**If on feature branch**, proceed normally. After all commits, present:
+**If on feature branch**, proceed. After all commits:
 
 ```
 What would you like to do?
@@ -44,36 +75,22 @@ What would you like to do?
 3. Keep locally
 ```
 
+> **⚡ Quick**: auto-push (Option 1)
+
 ---
 
-## Step 1: Diff Summary
+## Step 2: Diff Summary
 
 // turbo
 
 ```bash
-git status --short && echo "---" && git diff --stat
+git status --short; git diff --stat
 ```
 
-After running, **auto-detect scopes** from changed file paths:
+**Auto-detect scopes** from changed file paths:
 
-**Scope detection strategy** (works for any project):
-1. Extract the **top-level directory** of each changed file
-2. Group files by that directory → each group = one scope
-3. Root-level files → scope is omitted
-
-| Example Path | Detected Scope |
-|-------------|----------------|
-| `src/components/Button.tsx` | `src` or more granularly `components` |
-| `apps/web/pages/index.tsx` | `web` (monorepo) |
-| `lib/utils.ts` | `lib` |
-| `.agent/skills/designer/SKILL.md` | `skills` |
-| `cli/index.js` | `cli` |
-| `README.md` | _(root, omit scope)_ |
-
-**Common scope mappings** (auto-apply when detected):
-
-| Directory Pattern | Suggested Scope |
-|-------------------|----------------|
+| Directory Pattern | Scope |
+|-------------------|-------|
 | `apps/<name>/` | `<name>` |
 | `packages/<name>/` | `<name>` |
 | `src/` | omit (single-app) |
@@ -84,19 +101,18 @@ After running, **auto-detect scopes** from changed file paths:
 | `docs/` | `docs` |
 | `test/` or `__tests__/` | `test` |
 | `.github/` | `ci` |
+| Root files | omit scope |
 
-Present a summary table:
-
-| Scope | Files | Example Changes |
-|-------|------:|-----------------|
-| `cli` | 2 | index.js, migrate.js |
-| `skills` | 23 | SKILL.md frontmatter updates |
+**🛡️ Safe / 🎛️ Custom**: Present scope summary table.
+**⚡ Quick**: Show file count only: `📦 <N> files changed`.
 
 ---
 
-## Step 1.5: File Selection (if > 15 changed files)
+## Step 2.5: File Selection
 
-If more than **15 files** are changed, present selection options:
+> **⚡ Quick**: skip — always stage all
+> **🛡️ Safe**: ask only if > 15 files
+> **🎛️ Custom**: always ask
 
 ```
 📦 Found <N> changed files across <M> scopes.
@@ -107,47 +123,93 @@ How would you like to commit?
 3. Let me pick specific files
 ```
 
-- **Option 1**: Stage all, single commit
-- **Option 2**: Split mode — commit each scope separately (Steps 3-5 loop)
-- **Option 3**: List all changed files with numbers, let user type numbers/ranges:
-  ```
-  Changed files:
-   [1] cli/index.js
-   [2] cli/migrate-skills.js
-   [3] .agent/skills/ai-engineer/SKILL.md
-   [4] .agent/skills/backend-developer/SKILL.md
-   ...
+**Option 3** (🎛️ Custom):
+```
+Changed files:
+ [1] cli/index.js
+ [2] cli/migrate-skills.js
+ [3] .agent/skills/ai-engineer/SKILL.md
+ ...
 
-  Enter file numbers to stage (e.g. 1,2,5-8 or "all"):
-  ```
-
-If ≤ 15 files, default to **Option 1** (all at once) without asking.
+Enter file numbers to stage (e.g. 1,2,5-8 or "all"):
+```
 
 ---
 
-## Step 2: Protected Files Guard
+## Step 3: .gitignore Safety Check
+
+> **⚡ Quick**: skip
+> **🛡️ Safe**: auto-check + auto-fix
+> **🎛️ Custom**: check + ask before each fix
 
 // turbo
 
-Before staging, check for **protected files** in the changed list:
+```bash
+test -f .gitignore && echo "EXISTS" || echo "MISSING"
+```
 
-| Category | Common Files |
-|----------|-------------|
-| Lock files | `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`, `go.sum`, `Cargo.lock` |
+**If `.gitignore` is MISSING:**
+- 🚨 **STOP** — warn user
+- Auto-generate based on project type:
+
+| Detected Files | Project Type | Required Ignores |
+|---------------|-------------|-----------------|
+| `package.json` | Node.js | `node_modules/`, `dist/`, `*.log` |
+| `requirements.txt` / `pyproject.toml` | Python | `__pycache__/`, `*.pyc`, `.venv/` |
+| `go.mod` | Go | `vendor/`, binary outputs |
+| `Cargo.toml` | Rust | `target/` |
+| `*.sln` / `*.csproj` | .NET | `bin/`, `obj/` |
+
+**If `.gitignore` EXISTS:** verify critical patterns:
+
+| Pattern | Why |
+|---------|-----|
+| `node_modules/` | Dependencies (500MB+) |
+| `.env` or `.env*` | Secrets, API keys |
+| `dist/` / `build/` / `.next/` | Build outputs |
+| `*.log` | Log files |
+| `.DS_Store` / `Thumbs.db` | OS junk |
+
+**If patterns missing (🛡️ Safe):** auto-add + inform user.
+**If patterns missing (🎛️ Custom):**
+```
+⚠️ Your .gitignore is missing important patterns:
+  - node_modules/ (detected package.json)
+  - .env (secrets could be committed!)
+
+Add them now?
+1. Yes, add missing patterns (recommended)
+2. No, I know what I'm doing
+```
+
+---
+
+## Step 4: Protected Files Guard
+
+> **⚡ Quick**: skip
+> **🛡️ Safe**: check + confirm sensitive files
+> **🎛️ Custom**: list every changed file for explicit approval
+
+// turbo
+
+Check for **protected files** in changed list:
+
+| Category | Files |
+|----------|-------|
+| Lock files | `package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`, `go.sum` |
 | Environment | `.env`, `.env.*` |
 | CI/CD | `.github/workflows/*`, `Dockerfile*`, `docker-compose*` |
 | Config roots | `package.json`, `tsconfig.json`, `*.config.*` |
 | Git config | `.gitignore`, `.gitmodules` |
 
 **Rules:**
-- If protected files are modified → **list explicitly** and ask for confirmation
+- **Never** silently stage `.env` files (even in ⚡ Quick mode!)
 - `package-lock.json` acceptable if `package.json` also changed
-- **Never** silently stage `.env` files
-- Config files: confirm intent ("Did you intentionally modify `tsconfig.json`?")
+- **🎛️ Custom**: "Did you intentionally modify `<file>`?" for each
 
 ---
 
-## Step 3: Stage Files
+## Step 5: Stage Files
 
 // turbo
 
@@ -155,13 +217,13 @@ Before staging, check for **protected files** in the changed list:
 ```bash
 git add -A
 ```
-Or specific files if user selected in Step 1.5:
+
+### Selective (from Step 2.5)
 ```bash
 git add <file1> <file2> ...
 ```
 
 ### Split Mode
-Stage only files for the **current scope group**:
 ```bash
 git add <scope-directory>/
 ```
@@ -176,46 +238,41 @@ Commit order (dependencies first):
 
 ---
 
-## Step 4: Generate Commit Message
+## Step 6: Generate Commit Message
 
 // turbo
 
-1. Analyze the staged diff
-2. Generate a **Conventional Commit** message:
+1. Analyze staged diff
+2. Generate **Conventional Commit**:
 
 | Prefix | Use For |
 |--------|---------|
 | `feat:` | New feature |
 | `fix:` | Bug fix |
-| `refactor:` | Code restructuring |
-| `docs:` | Documentation only |
-| `chore:` | Maintenance (deps, config) |
-| `test:` | Adding/fixing tests |
-| `style:` | Formatting, no logic change |
-| `ci:` | CI/CD changes |
-| `perf:` | Performance improvement |
+| `refactor:` | Restructuring |
+| `docs:` | Documentation |
+| `chore:` | Maintenance |
+| `test:` | Tests |
+| `style:` | Formatting only |
+| `ci:` | CI/CD |
+| `perf:` | Performance |
 
 3. Format: `type(scope): short description`
    - Lowercase, imperative mood, no period, max 72 chars
-   - Scope = auto-detected from Step 1 (omit if root-only or mixed)
-4. For complex changes, add body after blank line
-5. For breaking changes: `type(scope)!: description` + `BREAKING CHANGE:` footer
+4. Complex changes: add body after blank line
+5. Breaking changes: `type(scope)!: description` + `BREAKING CHANGE:` footer
 
-**Examples:**
-- `feat(cli): add profile-based init command`
-- `refactor(skills): migrate frontmatter to agentskills.io spec`
-- `chore: update package.json metadata`
-- `docs: add installation guide to README`
-- `fix(api): handle null response from auth endpoint`
-
-6. **Present to user for approval** before committing
+**Mode behavior:**
+- **⚡ Quick**: auto-generate + commit immediately (no confirmation)
+- **🛡️ Safe**: auto-generate + show for approval
+- **🎛️ Custom**: show suggestion, user can edit or write their own
 
 ---
 
-## Step 5: Commit
+## Step 7: Commit
 
 ```bash
-git commit -m "<approved message>"
+git commit -m "<message>"
 ```
 
 ### Hook Failures
@@ -227,20 +284,21 @@ git commit -m "<approved message>"
 | Prettier on non-code | `--no-verify` |
 | Test failures | Fix tests, do NOT bypass |
 
-When using `--no-verify`, always inform user why.
-
 ---
 
-## Step 6: Loop (Split Mode Only)
+## Step 8: Loop (Split Mode Only)
 
-Repeat Steps 3–5 for each remaining scope group.
+Repeat Steps 5–7 for each remaining scope group.
 Show progress: `✅ 2/4 committed: skills, cli`
 
 ---
 
-## Step 7: Push
+## Step 9: Push
 
 // turbo
+
+- **⚡ Quick / 🛡️ Safe**: auto-push
+- **🎛️ Custom**: ask first
 
 ```bash
 git push origin HEAD
@@ -248,17 +306,17 @@ git push origin HEAD
 
 If rejected:
 ```bash
-git pull --rebase origin HEAD && git push origin HEAD
+git pull --rebase origin HEAD; git push origin HEAD
 ```
 
-If this is a **new branch** (created in Step 0):
+If **new branch** (created in Step 1):
 ```bash
 git push -u origin HEAD
 ```
 
 ---
 
-## Step 8: Confirm
+## Step 10: Confirm
 
 // turbo
 
@@ -266,13 +324,12 @@ git push -u origin HEAD
 git log --oneline -<N>
 ```
 
-Report:
 ```
 ✅ Committed and pushed successfully.
 <hash> <message>
 ```
 
-If on a feature branch, remind user:
+If on a feature branch:
 ```
 💡 To create a PR: gh pr create --fill
 ```
@@ -287,5 +344,6 @@ If on a feature branch, remind user:
 | Push rejected | `git pull --rebase` then retry |
 | Merge conflict | Show files, ask user to resolve |
 | Auth failure | Check credentials / SSH |
-| Wrong branch | `git stash && git checkout -b feat/<name> && git stash pop` |
+| Wrong branch | `git stash; git checkout -b feat/<name>; git stash pop` |
 | Large files blocked | Check `.gitignore`, suggest `git-lfs` |
+| `.env` staged | 🚨 Unstage immediately: `git reset HEAD .env` |
