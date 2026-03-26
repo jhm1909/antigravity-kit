@@ -23,8 +23,8 @@ description: Convention for how workflows must invoke skills — the multi-layer
 │   [project-manager] → [lead-architect] →      │
 │   [business-analysis] → [frontend-developer]  │
 ├───────────────────────────────────────────────┤
-│          LAYER 4: Knowledge Graph              │
-│   graph-index.json routes dependencies:       │
+│          LAYER 4: Manifest                    │
+│   skills-manifest.json routes dependencies:   │
 │   extends, requires, suggests, conflicts      │
 ├───────────────────────────────────────────────┤
 │            LAYER 5: Rules                      │

@@ -162,7 +162,7 @@ For each:
 
 After all items:
 - **Invoke `[project-manager]` skill** to update `skills-manifest.json`
-- Update `graph-index.json` if new entries needed
+- Update `skills-manifest.json` if new entries needed
 - Suggest `/commit`
 
 ---

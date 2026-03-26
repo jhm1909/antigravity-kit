@@ -12,7 +12,7 @@ Antigravity Kit is a multi-layer system:
 USER → /guide (Layer 1: Discovery)
   → Workflow Chain (Layer 2: Orchestration)
     → Invoke [skill] (Layer 3: Expertise)
-      → Knowledge Graph (Layer 4: Routing)
+      → Manifest (Layer 4: Routing)
         → Rules (Layer 5: Guardrails)
 ```
 
@@ -25,19 +25,25 @@ USER → /guide (Layer 1: Discovery)
 ```
 .agent/
 ├── ARCHITECTURE.md           # This file
-├── graph-index.json          # Knowledge graph (v3.0)
-├── skills-manifest.json      # Skill metadata + triggers (v2.0)
+├── skills-manifest.json      # Single source of truth (v3.0)
+├── known-registries.json     # External skill registries
 ├── mcp_config.json           # MCP server template
-├── skills/                   # 13 Skills + sub-skills
+├── skills/                   # 20 Skills + sub-skills
 │   ├── ai-engineer/
+│   ├── app-builder/
 │   ├── backend-developer/
 │   ├── blockchain-engineer/
 │   ├── business-analysis/
+│   ├── code-review/          # v2 — Trail of Bits security methodology
+│   ├── context-engineering/
+│   ├── debugging/
 │   ├── designer/
 │   ├── devops-engineer/
-│   ├── frontend-developer/
-│   │   ├── react-nextjs/     # Sub-skill
-│   │   └── threejs/          # Sub-skill
+│   ├── frontend-developer/   # v4 — Vercel React rules
+│   │   ├── react-nextjs/
+│   │   ├── threejs/
+│   │   └── references/       # react_performance_rules, composition_patterns
+│   ├── game-development/
 │   ├── lead-architect/
 │   ├── marketer/
 │   │   └── remotion-best-practices/
@@ -50,30 +56,37 @@ USER → /guide (Layer 1: Discovery)
 │   │   ├── tailwind-setup/
 │   │   ├── upgrading-expo/
 │   │   └── use-dom/
-│   ├── project-manager/
+│   ├── modern-python/        # Trail of Bits toolchain
+│   ├── project-manager/      # v5 — Dean Peters frameworks
+│   │   └── references/       # discovery_process, prd_development, jobs_to_be_done
 │   ├── prompt-engineer/
-│   └── qa-tester/
-├── workflows/                # 14 Workflows
+│   ├── qa-tester/            # v3 — Trail of Bits security audit
+│   │   └── references/       # security_audit, supply_chain, PBT, etc.
+│   └── research-first/
+├── workflows/                # 15 Workflows
 │   ├── guide.md              # 🧭 Discovery
 │   ├── brainstorm.md         # 💡 Planning
 │   ├── documentation.md      # 📚 Specs
 │   ├── break-tasks.md        # 📋 Task breakdown
 │   ├── implement-feature.md  # 🔨 Coding
 │   ├── development.md        # 🐛 Quick fixes
+│   ├── debug.md              # 🔬 Scientific debugging
 │   ├── ui-ux-design.md       # 🎨 Design
 │   ├── qa.md                 # 🧪 Test plans
 │   ├── gen-tests.md          # ✅ Test code
 │   ├── absorb.md             # 🔍 Study reference kits
 │   ├── commit.md             # 📦 Git (3-mode)
 │   ├── bootstrap.md          # 🚀 Project scaffolding
+│   ├── install-skill.md      # 📥 On-demand skill installer
 │   └── custom-behavior.md    # ⚙️ Meta-config
-├── rules/                    # 9 Always-on Rules
+├── rules/                    # 10 Always-on Rules
 │   ├── clean-code.md
 │   ├── documents.md          # Dewey Decimal doc structure
 │   ├── git-workflow.md
 │   ├── nano-banana.md        # Image generation convention
 │   ├── research.md
 │   ├── skill-loading.md      # Skill activation protocol
+│   ├── skill-suggestion.md   # Auto-suggest skills
 │   ├── testing.md
 │   ├── workflow-advisor.md   # Auto-suggest workflow chains
 │   └── workflow-skill-convention.md  # Layer architecture
@@ -82,27 +95,34 @@ USER → /guide (Layer 1: Discovery)
 
 ---
 
-## Skills (13 + 12 sub-skills)
+## Skills (20 primary + sub-skills)
 
-| Skill | Domain | Triggers | Used By Workflows |
-|-------|--------|----------|-------------------|
-| `project-manager` | management | roadmap, PRD, sprint | brainstorm, guide, absorb |
-| `business-analysis` | analysis | requirements, persona | documentation, absorb, break-tasks |
-| `lead-architect` | infra | architecture, ADR | documentation, absorb, implement-feature |
-| `frontend-developer` | web | react, css, component | implement-feature, ui-ux-design |
-| `backend-developer` | infra | API, auth, database | implement-feature, documentation |
-| `mobile-developer` | mobile | expo, react-native | implement-feature |
-| `designer` | design | UI, UX, figma | ui-ux-design, implement-feature |
-| `devops-engineer` | infra | docker, CI/CD | documentation |
-| `ai-engineer` | ai | LLM, RAG, agentic | implement-feature |
-| `qa-tester` | qa | testing, E2E | gen-tests, qa, documentation |
-| `blockchain-engineer` | blockchain | web3, solidity | implement-feature |
-| `marketer` | marketing | SEO, social media | — |
-| `prompt-engineer` | ai | system prompt, few-shot | — |
+| Skill | Domain | Version | Sources |
+|-------|--------|---------|---------|
+| `project-manager` | management | v5.0 | Dean Peters PM frameworks |
+| `business-analysis` | analysis | — | — |
+| `qa-tester` | qa | v3.0 | Trail of Bits security |
+| `code-review` | qa | v2.0 | Trail of Bits differential review |
+| `frontend-developer` | web | v4.0 | Vercel React rules |
+| `backend-developer` | infra | — | — |
+| `mobile-developer` | mobile | — | — |
+| `designer` | design | — | — |
+| `devops-engineer` | infra | — | — |
+| `lead-architect` | infra | — | — |
+| `ai-engineer` | ai | — | — |
+| `blockchain-engineer` | blockchain | — | — |
+| `marketer` | marketing | — | — |
+| `prompt-engineer` | ai | — | — |
+| `app-builder` | meta | — | — |
+| `game-development` | game | — | — |
+| `context-engineering` | meta | — | — |
+| `debugging` | qa | — | — |
+| `research-first` | meta | — | — |
+| `modern-python` | tooling | v1.0 | Trail of Bits uv/ruff/ty |
 
 ---
 
-## Workflows (14)
+## Workflows (15)
 
 ### Workflow Chains
 
@@ -110,6 +130,7 @@ USER → /guide (Layer 1: Discovery)
 New Project:    /brainstorm → /documentation → /break-tasks → /implement-feature → /commit
 New Feature:    /break-tasks → /implement-feature → /gen-tests → /commit
 Bug Fix:        /development → /gen-tests → /commit
+Debug:          /debug → /commit
 UI/UX:          /ui-ux-design → /break-tasks → /implement-feature → /commit
 Study Kit:      /absorb → /break-tasks → /implement-feature → /commit
 MVP Sprint:     /brainstorm → /documentation → [/break-tasks → /implement-feature → /commit] × N
@@ -125,19 +146,20 @@ MVP Sprint:     /brainstorm → /documentation → [/break-tasks → /implement-
 
 ---
 
-## Rules (9)
+## Rules (10)
 
-| Rule | Type | Purpose |
-|------|------|---------|
-| `clean-code` | auto | Coding standards |
-| `documents` | auto | Dewey Decimal doc structure |
-| `git-workflow` | auto | Branch strategy, commit format |
-| `nano-banana` | auto | Image generation convention |
-| `research` | auto | Deep research protocol |
-| `skill-loading` | auto | Skill activation routing |
-| `testing` | auto | Test coverage requirements |
-| `workflow-advisor` | auto | Auto-suggest workflow chains |
-| `workflow-skill-convention` | auto | 5-layer architecture enforcement |
+| Rule | Purpose |
+|------|---------|
+| `clean-code` | Coding standards |
+| `documents` | Dewey Decimal doc structure |
+| `git-workflow` | Branch strategy, commit format |
+| `nano-banana` | Image generation convention |
+| `research` | Deep research protocol |
+| `skill-loading` | Skill activation routing |
+| `skill-suggestion` | Auto-suggest relevant skills |
+| `testing` | Test coverage requirements |
+| `workflow-advisor` | Auto-suggest workflow chains |
+| `workflow-skill-convention` | 5-layer architecture enforcement |
 
 ---
 
@@ -156,24 +178,12 @@ Pre-configured skill bundles (via `ag-kit init --profile`):
 
 ---
 
-## CLI
-
-```bash
-npx ag-kit init              # Setup .agent/ in your project
-npx ag-kit init --profile web-frontend  # Profile-based setup
-npx ag-kit list              # Show installed skills
-npx ag-kit status            # Kit integrity check
-```
-
----
-
 ## Statistics
 
 | Metric | Count |
 |--------|------:|
-| Skills | 13 primary + 12 sub-skills |
-| Workflows | 14 |
-| Rules | 9 |
+| Skills | 20 primary + sub-skills |
+| Workflows | 15 |
+| Rules | 10 |
 | Profiles | 6 |
-| CLI Commands | 4 |
-| Knowledge Graph Nodes | 45 |
+| Absorbed Sources | Trail of Bits, Vercel, Dean Peters |

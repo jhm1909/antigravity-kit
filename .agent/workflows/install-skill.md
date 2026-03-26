@@ -150,7 +150,7 @@ Update `.agent/skills-manifest.json`:
 }
 ```
 
-Update `.agent/graph-index.json` if applicable.
+Update `.agent/skills-manifest.json` with triggers and workflow refs.
 
 ### 4.5 Cleanup
 ```bash

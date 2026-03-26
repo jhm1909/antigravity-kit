@@ -204,6 +204,7 @@
     "break-tasks":       { "skills": ["business-analysis", "lead-architect"],   "chains_to": ["implement-feature"] },
     "implement-feature": { "skills": ["lead-architect", "backend-developer", "frontend-developer", "designer", "qa-tester", "project-manager"], "chains_to": ["gen-tests", "commit"] },
     "development":       { "skills": [],                                        "chains_to": ["commit"] },
+    "debug":             { "skills": ["debugging"],                             "chains_to": ["commit"] },
     "ui-ux-design":      { "skills": ["designer", "frontend-developer"],        "chains_to": ["break-tasks"] },
     "qa":                { "skills": ["qa-tester"],                             "chains_to": ["gen-tests"] },
     "gen-tests":         { "skills": ["qa-tester"],                             "chains_to": ["commit"] },
