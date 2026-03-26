@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "generated_at": "2026-03-26",
+  "version": "3.0.0",
+  "generated_at": "2026-03-27",
   "description": "Skills manifest for antigravity-kit — skill metadata, triggers, profiles, and workflow integration",
   "core": ["project-manager", "business-analysis", "qa-tester"],
   "skills": {
@@ -182,11 +182,19 @@
     },
     "code-review": {
       "name": "Code Review",
-      "description": "Code review: verification gates, feedback reception, evidence-based claims. No completion without verification.",
-      "size": "20K",
+      "description": "Code review: verification gates, security-focused differential review, spec compliance. Trail of Bits methodology.",
+      "size": "32K",
       "dependencies": [],
-      "triggers": ["review", "PR", "pull request", "feedback", "verification", "completion", "done"],
+      "triggers": ["review", "PR", "pull request", "feedback", "verification", "completion", "done", "security review", "blast radius"],
       "used_by_workflows": ["implement-feature", "commit"]
+    },
+    "modern-python": {
+      "name": "Modern Python",
+      "description": "Modern Python tooling: uv, ruff, ty, pytest. Project setup, migration, PEP 723 scripts. Trail of Bits methodology.",
+      "size": "16K",
+      "dependencies": [],
+      "triggers": ["python", "uv", "ruff", "ty", "pyproject.toml", "pip", "poetry", "mypy"],
+      "used_by_workflows": ["bootstrap", "development"]
     }
   },
   "workflows": {
@@ -202,7 +210,8 @@
     "absorb":            { "skills": ["project-manager", "lead-architect", "business-analysis"], "chains_to": ["break-tasks"] },
     "commit":            { "skills": [],                                        "chains_to": [] },
     "bootstrap":         { "skills": ["lead-architect"],                        "chains_to": ["brainstorm"] },
-    "custom-behavior":   { "skills": ["project-manager"],                       "chains_to": [] }
+    "custom-behavior":   { "skills": ["project-manager"],                       "chains_to": [] },
+    "install-skill":     { "skills": [],                                        "chains_to": ["commit"] }
   },
   "profiles": {
     "web-frontend": {

@@ -1,11 +1,18 @@
 ---
 name: code-review
-description: Code review practices emphasizing technical rigor, verification gates, and evidence-based claims. Use when receiving feedback, completing tasks, or before making completion/success claims.
+description: >
+  Code review practices emphasizing technical rigor, verification gates, evidence-based claims,
+  and security-focused differential review. Use when receiving feedback, completing tasks,
+  reviewing PRs for security regressions, or before making completion/success claims.
+metadata:
+  version: "2.0.0"
+  sources:
+    - trailofbits/skills (differential-review, spec-to-code-compliance)
 ---
 
 # Code Review
 
-Guide proper code review practices emphasizing technical rigor, evidence-based claims, and verification over performative responses.
+Guide proper code review practices: technical rigor, evidence-based claims, security-focused review.
 
 ## Three Practices
 
@@ -26,6 +33,12 @@ SITUATION?
 │  ├─ Unclear items? → STOP, ask for clarification first
 │  ├─ From human partner? → Understand, then implement
 │  └─ From external reviewer? → Verify technically before implementing
+│
+├─ Security-focused PR review?
+│  └─ Read: differential_review.md (blast radius, risk classification)
+│
+├─ Spec-to-code compliance check?
+│  └─ Read: spec_compliance.md (6-phase audit methodology)
 │
 ├─ Completed work
 │  └─ Major feature/task? → Run verification, present evidence
@@ -63,16 +76,38 @@ SITUATION?
 - Using "should", "probably", "seems to"
 - Expressing satisfaction before verification
 - Committing without verification
-- ANY wording implying success without running verification
 
 **Full protocol**: [verification-before-completion.md](./references/verification-before-completion.md)
 
-## Requesting Review Protocol
+## Security Review — Risk Classification
 
-**Full protocol**: [requesting-code-review.md](./references/requesting-code-review.md)
+| Risk Level | Triggers |
+|------------|----------|
+| **HIGH** | Auth, crypto, external calls, value transfer, validation removal |
+| **MEDIUM** | Business logic, state changes, new public APIs |
+| **LOW** | Comments, tests, UI, logging |
+
+**Red Flags (immediate investigation)**:
+- Removed code from "security", "CVE", or "fix" commits
+- Access control modifiers removed
+- Validation removed without replacement
+- High blast radius (50+ callers) + HIGH risk change
+
+**Full methodology**: [differential_review.md](./references/differential_review.md)
+
+## References
+
+| Reference | Purpose |
+|:----------|:--------|
+| `code-review-reception.md` | Receiving feedback protocol |
+| `verification-before-completion.md` | Iron Law verification gates |
+| `requesting-code-review.md` | How to request reviews |
+| `differential_review.md` | Security PR review (Trail of Bits) |
+| `spec_compliance.md` | Spec-to-code audit (Trail of Bits) |
 
 ## Bottom Line
 
 1. Technical rigor over social performance — No performative agreement
 2. Evidence before claims — Verification gates always
-3. Verify. Question. Then implement. Evidence. Then claim.
+3. Security before speed — Risk-classify every PR change
+4. Verify. Question. Then implement. Evidence. Then claim.
