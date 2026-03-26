@@ -176,56 +176,17 @@
         "moc": ["product-development-moc"]
       }
     },
-    "nextjs-react-expert": {
+    "research-first": {
       "type": "skill",
-      "domain": "web",
-      "path": ".agent/skills/nextjs-react-expert/SKILL.md",
-      "triggers": ["nextjs", "next.js", "RSC", "server component", "app router", "waterfall", "bundle size"],
-      "edges": {
-        "extends": ["frontend-developer"],
-        "suggests": ["tailwind-patterns"],
-        "enhances": ["frontend-developer"],
-        "conflicts": [],
-        "moc": ["design-moc"]
-      }
-    },
-    "tailwind-patterns": {
-      "type": "skill",
-      "domain": "web",
-      "path": ".agent/skills/tailwind-patterns/SKILL.md",
-      "triggers": ["tailwind", "tailwindcss", "css utility", "design tokens", "container queries"],
-      "edges": {
-        "extends": ["frontend-developer"],
-        "suggests": ["designer"],
-        "enhances": ["frontend-developer"],
-        "conflicts": [],
-        "moc": ["design-moc"]
-      }
-    },
-    "i18n-localization": {
-      "type": "skill",
-      "domain": "web",
-      "path": ".agent/skills/i18n-localization/SKILL.md",
-      "triggers": ["i18n", "localization", "translation", "RTL", "locale", "multilingual"],
+      "domain": "meta",
+      "path": ".agent/skills/research-first/SKILL.md",
+      "triggers": ["research", "docs", "latest", "version", "context7", "verify", "check docs"],
       "edges": {
         "extends": [],
-        "suggests": ["frontend-developer"],
-        "enhances": ["frontend-developer", "mobile-developer"],
+        "suggests": ["frontend-developer", "backend-developer"],
+        "enhances": ["frontend-developer", "backend-developer", "mobile-developer", "ai-engineer"],
         "conflicts": [],
         "moc": ["product-development-moc"]
-      }
-    },
-    "mcp-builder": {
-      "type": "skill",
-      "domain": "ai",
-      "path": ".agent/skills/mcp-builder/SKILL.md",
-      "triggers": ["MCP", "model context protocol", "MCP server", "tool design"],
-      "edges": {
-        "extends": ["backend-developer"],
-        "suggests": ["ai-engineer"],
-        "enhances": ["ai-engineer"],
-        "conflicts": [],
-        "moc": ["ai-development-moc"]
       }
     },
     "app-builder": {
@@ -411,7 +372,7 @@
     "ai-development-moc": {
       "path": "mocs/ai-development-moc.md",
       "domain": "ai",
-      "skills": ["ai-engineer", "prompt-engineer", "mcp-builder"]
+      "skills": ["ai-engineer", "prompt-engineer"]
     },
     "blockchain-moc": {
       "path": "mocs/blockchain-moc.md",
@@ -421,7 +382,7 @@
     "design-moc": {
       "path": "mocs/design-moc.md",
       "domain": "design",
-      "skills": ["designer", "frontend-developer", "nextjs-react-expert", "tailwind-patterns"]
+      "skills": ["designer", "frontend-developer"]
     },
     "infrastructure-moc": {
       "path": "mocs/infrastructure-moc.md",
@@ -436,7 +397,7 @@
     "product-development-moc": {
       "path": "mocs/product-development-moc.md",
       "domain": "product",
-      "skills": ["project-manager", "business-analysis", "qa-tester", "marketer", "i18n-localization", "app-builder"]
+      "skills": ["project-manager", "business-analysis", "qa-tester", "marketer", "app-builder", "research-first"]
     },
     "game-development-moc": {
       "path": "mocs/game-development-moc.md",
