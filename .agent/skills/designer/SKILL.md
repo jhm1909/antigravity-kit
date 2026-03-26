@@ -1,28 +1,102 @@
 ---
 name: designer
 description: >
-  UI/UX, branding, design systems, and accessibility. Use for creating interfaces, visual identity, and motion design.
+  UI/UX design intelligence with searchable database. 50+ styles, 161 color palettes, 57 font pairings,
+  161 product types, 99 UX guidelines. BM25 search engine for data-driven design decisions.
+  Use for creating interfaces, visual identity, design systems, and accessibility.
 license: MIT
 compatibility: Claude Code, Cursor, Gemini CLI, GitHub Copilot
 metadata:
   author: jhm1909
-  version: "2.0.0"
+  version: "3.0.0"
   domain: design
-  estimated_tokens: 12000
+  estimated_tokens: 15000
 ---
 
-# Designer
+# Designer — Design Intelligence
 
-Expert design guidance for production-grade interfaces and design systems.
+Expert design guidance powered by a **searchable design database** with BM25 ranking.
 
 ## Knowledge Graph
 
 - **extends**: []
 - **requires**: []
-- **suggests**: [[frontend-developer]], [[tailwind-setup]], [[framer-motion]], [[mobile-developer]]
+- **suggests**: [[frontend-developer]], [[research-first]]
 - **conflicts**: []
 - **enhances**: [[frontend-developer]] (implementation of designs)
 - **moc**: [[design-moc]]
+
+---
+
+## Design Intelligence Search (REQUIRED)
+
+Before making ANY design decision, **search the database** for data-driven recommendations.
+
+### Prerequisites
+
+```bash
+python3 --version  # Python 3.x required (zero external dependencies)
+```
+
+### Design System Generation (Start Here)
+
+```bash
+python3 skills/designer/scripts/ui-search/search.py "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
+```
+
+**Example:**
+```bash
+python3 skills/designer/scripts/ui-search/search.py "fintech SaaS dashboard modern" --design-system -p "PayFlow"
+```
+
+Returns: Complete design system (style, colors, typography, effects, anti-patterns).
+
+### Domain Search (Deep-Dive)
+
+```bash
+python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain> [-n <max_results>]
+```
+
+| Domain | Use For | Example |
+|--------|---------|---------|
+| `product` | Product type recommendations | `--domain product "SaaS e-commerce"` |
+| `style` | UI styles, effects | `--domain style "glassmorphism dark"` |
+| `color` | Color palettes by product | `--domain color "fintech professional"` |
+| `typography` | Font pairings | `--domain typography "elegant modern"` |
+| `chart` | Chart types + libraries | `--domain chart "trend dashboard"` |
+| `ux` | Best practices, anti-patterns | `--domain ux "animation accessibility"` |
+| `icons` | Icon recommendations | `--domain icons "navigation e-commerce"` |
+| `react` | React/Next.js performance | `--domain react "rerender bundle"` |
+| `web` | App interface guidelines | `--domain web "touch targets safe areas"` |
+| `landing` | Page structure, CTA | `--domain landing "hero social-proof"` |
+
+### Workflow
+
+```
+1. ANALYZE requirements → product type, audience, style keywords
+2. SEARCH --design-system → get full recommendation
+3. DEEP-DIVE --domain → supplement specific needs
+4. IMPLEMENT → using verified, data-driven choices
+```
+
+---
+
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Key Checks |
+|----------|----------|--------|------------|
+| 1 | Accessibility | CRITICAL | Contrast 4.5:1, alt text, keyboard nav, aria-labels |
+| 2 | Touch & Interaction | CRITICAL | Min 44×44px targets, 8px spacing, loading feedback |
+| 3 | Performance | HIGH | WebP/AVIF, lazy loading, CLS < 0.1 |
+| 4 | Style Selection | HIGH | Match product type, consistency, SVG icons |
+| 5 | Layout & Responsive | HIGH | Mobile-first, viewport meta, no horizontal scroll |
+| 6 | Typography & Color | MEDIUM | Base 16px, line-height 1.5, semantic tokens |
+| 7 | Animation | MEDIUM | 150-300ms, transform/opacity only, reduced-motion |
+| 8 | Forms & Feedback | MEDIUM | Visible labels, error near field, progressive disclosure |
+| 9 | Navigation | HIGH | Bottom nav ≤5, predictable back, deep linking |
+| 10 | Charts & Data | LOW | Legends, tooltips, accessible colors |
+
+---
 
 ## Core Principles
 
@@ -41,27 +115,37 @@ Expert design guidance for production-grade interfaces and design systems.
 - Performance-minded animations
 - Accessibility as foundation
 
-## References
+---
 
-| Reference | Purpose |
-|:----------|:--------|
-| `branding.md` | Logos, visual identity |
-| `color-theory.md` | Palettes, dark mode |
-| `typography.md` | Font pairing, scales |
-| `layout.md` | Grids, responsive design |
-| `motion.md` | Micro-interactions |
-| `accessibility.md` | WCAG compliance |
-| `design-systems.md` | Tokens, components |
+## Pre-Delivery Checklist
 
-## Visual Concepts
+### Visual
+- [ ] SVG icons (no emojis as UI elements)
+- [ ] Consistent icon family and style
+- [ ] Semantic theme tokens (no hardcoded hex)
 
-| Concept | Description |
-|:--------|:------------|
-| Apple Glassmorphism | Premium, translucent depth |
-| Neo-Brutalism | Raw, high-contrast, bold borders |
-| Claymorphism | Soft 3D, tactile feel |
-| Aurora Gradients | Ethereal, moving color meshes |
-| Bento Grids | Modular, grid-based layouts |
+### Interaction
+- [ ] All tappable elements have press feedback
+- [ ] Touch targets ≥44×44pt
+- [ ] Micro-interactions 150-300ms
+- [ ] Disabled states visually clear
+
+### Light/Dark Mode
+- [ ] Primary text contrast ≥4.5:1 in both modes
+- [ ] Dividers/borders visible in both modes
+- [ ] Both themes tested before delivery
+
+### Layout
+- [ ] Safe areas respected
+- [ ] 4/8dp spacing rhythm maintained
+- [ ] Verified on small + large screens
+
+### Accessibility
+- [ ] All images/icons have alt text
+- [ ] Color is never the only indicator
+- [ ] Reduced motion supported
+
+---
 
 ## Asset Creation Workflow
 
@@ -69,16 +153,6 @@ Expert design guidance for production-grade interfaces and design systems.
 2. **Process** with `scripts/remove_background.py`
 3. **Deliver** to [[frontend-developer]] for implementation
 
-## Integration
-
-- **Designer**: Creates visual designs, tokens, Motion Specs
-- **[[frontend-developer]]**: Implements CSS/JS from specs
-
-## Related Skills
-
-- [[frontend-developer]] — Implementation partner
-- [[threejs]] — 3D visual experiences
-
 ---
 
-*Design foundation | Works closely with [[frontend-developer]]*
+*Design intelligence v3.0 | Searchable database + methodology | Works with [[frontend-developer]]*

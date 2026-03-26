@@ -66,10 +66,10 @@
     },
     "designer": {
       "name": "Designer",
-      "description": "UI/UX, branding, design systems, accessibility, motion design",
-      "size": "104K",
+      "description": "UI/UX design intelligence with searchable BM25 database. 50+ styles, 161 colors, 57 fonts, 161 products, 99 UX rules. Data-driven design decisions.",
+      "size": "640K",
       "dependencies": [],
-      "triggers": ["design", "figma", "UI", "UX", "design system", "accessibility", "branding", "wireframe", "prototype"],
+      "triggers": ["design", "UI", "UX", "design system", "accessibility", "branding", "color palette", "font pairing", "style", "glassmorphism", "dark mode", "landing page"],
       "used_by_workflows": ["ui-ux-design", "implement-feature"]
     },
     "devops-engineer": {
