@@ -67,7 +67,9 @@ description: Always apply when working with documentation files
 |                      | Test Case           | `docs/035-QA/Test-Cases/`              | `TC-{Feature}-{NNN}.md`    |
 | **040-Design**       | Design System       | `docs/040-Design/Design-System/`       | `{Component}.md`           |
 |                      | Wireframe           | `docs/040-Design/Wireframes/`          | `WF-{Screen}-{Device}.png` |
-| **050-Research**     | Research/Analysis   | `docs/050-Research/`                   | `Analysis-{Topic}.md`      |
+| **050-Research**     | Research/Analysis   | `docs/050-Research/{Topic}/`           | `Analysis-{Topic}.md`      |
+|                      | Absorb Plan         | `docs/050-Research/{SourceName}/`      | `Absorb-{SourceName}.md`   |
+|                      | Research Index      | `docs/050-Research/`                   | `Research-MOC.md`          |
 | **060-Manuals**      | User Guide          | `docs/060-Manuals/User-Guide/`         | `{Topic}.md`               |
 |                      | Admin Guide         | `docs/060-Manuals/Admin-Guide/`        | `{Topic}.md`               |
 | **090-Archive**      | Deprecated Docs     | `docs/090-Archive/`                    | `{Original-Name}.md`       |

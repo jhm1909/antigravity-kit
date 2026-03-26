@@ -1,5 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "generated_at": "2026-03-26",
+  "description": "Skills manifest for antigravity-kit — skill metadata, triggers, profiles, and workflow integration",
   "core": ["project-manager", "business-analysis", "qa-tester"],
   "skills": {
     "project-manager": {
@@ -7,7 +9,8 @@
       "description": "Project Planning, Roadmapping, Requirements, Skill Creation",
       "size": "96K",
       "dependencies": [],
-      "triggers": ["roadmap", "PRD", "requirements", "user story", "prioritization", "RICE", "Kano"],
+      "triggers": ["roadmap", "PRD", "requirements", "user story", "prioritization", "RICE", "Kano", "sprint", "backlog"],
+      "used_by_workflows": ["brainstorm", "guide", "absorb", "break-tasks", "custom-behavior"],
       "router": "./skills/project-manager/router.json"
     },
     "business-analysis": {
@@ -15,84 +18,104 @@
       "description": "Requirements analysis, specs, agile documentation",
       "size": "80K",
       "dependencies": [],
-      "triggers": ["domain", "compliance", "persona", "user research", "acceptance criteria"]
+      "triggers": ["domain", "compliance", "persona", "user research", "acceptance criteria", "stakeholder", "use case"],
+      "used_by_workflows": ["documentation", "absorb", "break-tasks"]
     },
     "marketer": {
       "name": "Marketer",
-      "description": "Marketing, SEO, social media",
+      "description": "Marketing, SEO, social media, content strategy, video production",
       "size": "80K",
       "dependencies": [],
-      "triggers": ["marketing", "SEO", "social media", "content strategy"],
-      "sub-skills": ["remotion-best-practices"]
+      "triggers": ["marketing", "SEO", "social media", "content strategy", "campaign", "branding"],
+      "sub_skills": ["remotion-best-practices"],
+      "used_by_workflows": []
     },
     "qa-tester": {
       "name": "QA Tester",
-      "description": "Test planning, test cases, bug reporting",
+      "description": "Test planning, test cases, bug reporting, automation",
       "size": "72K",
       "dependencies": [],
-      "triggers": ["testing", "test case", "QA", "bug", "E2E", "unit test"]
+      "triggers": ["testing", "test case", "QA", "bug", "E2E", "unit test", "playwright", "coverage"],
+      "used_by_workflows": ["gen-tests", "qa", "documentation", "implement-feature"]
     },
     "frontend-developer": {
       "name": "Frontend Developer",
-      "description": "Frontend, React, optimization",
+      "description": "Frontend architecture, React, optimization, accessibility",
       "size": "292K",
       "dependencies": [],
-      "triggers": ["react", "vue", "angular", "css", "tailwind", "frontend", "component", "performance"],
-      "sub-skills": ["react-nextjs", "threejs"]
+      "triggers": ["react", "vue", "angular", "css", "tailwind", "frontend", "component", "performance", "nextjs"],
+      "sub_skills": ["react-nextjs", "threejs"],
+      "used_by_workflows": ["implement-feature", "ui-ux-design"]
     },
     "backend-developer": {
       "name": "Backend Developer",
-      "description": "API, Architecture, Security, Node/Python/Go",
+      "description": "API design, Architecture, Security, Node/Python/Go/Java",
       "size": "36K",
       "dependencies": [],
-      "triggers": ["API", "database", "auth", "security", "microservice", "backend", "node", "python", "go"]
+      "triggers": ["API", "database", "auth", "security", "microservice", "backend", "node", "python", "go", "REST", "GraphQL"],
+      "used_by_workflows": ["implement-feature", "documentation"]
     },
     "mobile-developer": {
       "name": "Mobile Developer",
-      "description": "React Native, Expo, mobile deployment",
+      "description": "React Native, Expo, native features, mobile deployment",
       "size": "236K",
       "dependencies": [],
-      "triggers": ["expo", "react-native", "ios", "android", "mobile", "app store", "play store"],
-      "sub-skills": ["api-routes", "building-ui", "data-fetching", "deployment", "dev-client", "tailwind-setup", "upgrading-expo", "use-dom", "cicd-workflows"]
+      "triggers": ["expo", "react-native", "ios", "android", "mobile", "app store", "play store", "native module"],
+      "sub_skills": ["api-routes", "building-ui", "data-fetching", "deployment", "dev-client", "tailwind-setup", "upgrading-expo", "use-dom", "cicd-workflows"],
+      "used_by_workflows": ["implement-feature"]
     },
     "designer": {
       "name": "Designer",
-      "description": "UI/UX, branding, design systems",
+      "description": "UI/UX, branding, design systems, accessibility, motion design",
       "size": "104K",
       "dependencies": [],
-      "triggers": ["design", "figma", "UI", "UX", "design system", "accessibility", "branding"]
+      "triggers": ["design", "figma", "UI", "UX", "design system", "accessibility", "branding", "wireframe", "prototype"],
+      "used_by_workflows": ["ui-ux-design", "implement-feature"]
     },
     "devops-engineer": {
       "name": "DevOps Engineer",
-      "description": "CI/CD, Infrastructure, Observability",
+      "description": "CI/CD, multi-cloud infrastructure, observability, SRE",
       "size": "40K",
       "dependencies": [],
-      "triggers": ["docker", "kubernetes", "CI/CD", "deployment", "monitoring", "observability", "terraform"]
+      "triggers": ["docker", "kubernetes", "CI/CD", "deployment", "monitoring", "observability", "terraform", "AWS", "GCP"],
+      "used_by_workflows": ["documentation"]
     },
     "lead-architect": {
       "name": "Lead Architect",
-      "description": "System design, high-stakes decisions",
+      "description": "System design, high-stakes decisions, scalability, ADRs",
       "size": "48K",
       "dependencies": [],
-      "triggers": ["architecture", "system design", "scalability", "ADR", "RFC", "tech spec"]
+      "triggers": ["architecture", "system design", "scalability", "ADR", "RFC", "tech spec", "microservices", "monolith"],
+      "used_by_workflows": ["documentation", "absorb", "break-tasks", "implement-feature", "bootstrap"]
     },
     "ai-engineer": {
       "name": "AI Engineer",
-      "description": "GenAI, RAG, Evaluation pipelines",
+      "description": "GenAI, Agentic Systems, RAG, Evaluation pipelines",
       "size": "24K",
       "dependencies": [],
-      "triggers": ["AI", "LLM", "RAG", "prompt", "embedding", "fine-tune", "openai", "anthropic"]
+      "triggers": ["AI", "LLM", "RAG", "prompt", "embedding", "fine-tune", "openai", "anthropic", "agentic"],
+      "used_by_workflows": ["implement-feature"]
     },
     "blockchain-engineer": {
       "name": "Blockchain Engineer",
-      "description": "Smart contracts, protocols, security auditing",
+      "description": "Smart contracts, protocol architecture, security auditing",
       "size": "20K",
       "dependencies": [],
-      "triggers": ["blockchain", "smart contract", "web3", "ethereum", "solidity", "defi"]
+      "triggers": ["blockchain", "smart contract", "web3", "ethereum", "solidity", "defi", "tokenomics"],
+      "used_by_workflows": ["implement-feature"]
+    },
+    "prompt-engineer": {
+      "name": "Prompt Engineer",
+      "description": "Prompt engineering, system prompts, few-shot, chain-of-thought",
+      "size": "12K",
+      "parent": "ai-engineer",
+      "dependencies": ["ai-engineer"],
+      "triggers": ["prompt engineering", "system prompt", "few-shot", "chain-of-thought", "prompt template"],
+      "used_by_workflows": []
     },
     "remotion-best-practices": {
       "name": "Remotion Best Practices",
-      "description": "Video creation with Remotion",
+      "description": "Video creation with Remotion framework",
       "size": "132K",
       "parent": "marketer",
       "dependencies": ["frontend-developer"],
@@ -100,21 +123,37 @@
     },
     "react-nextjs": {
       "name": "React & Next.js",
-      "description": "Next.js best practices and React optimization",
+      "description": "Next.js best practices, Server Components, App Router",
       "size": "180K",
       "parent": "frontend-developer",
       "dependencies": ["frontend-developer"],
-      "triggers": ["nextjs", "next.js", "server component", "RSC", "app router"]
+      "triggers": ["nextjs", "next.js", "server component", "RSC", "app router", "Next.js 16"],
+      "router": "./skills/frontend-developer/react-nextjs/router.json"
     },
     "threejs": {
       "name": "Three.js",
-      "description": "3D graphics with Three.js",
+      "description": "3D graphics, WebGL, interactive 3D scenes",
       "size": "520K",
       "parent": "frontend-developer",
       "dependencies": ["frontend-developer"],
       "triggers": ["threejs", "three.js", "3D", "webgl", "scene", "camera", "renderer"],
       "router": "./skills/frontend-developer/threejs/router.json"
     }
+  },
+  "workflows": {
+    "guide":             { "skills": ["project-manager", "lead-architect"],     "chains_to": ["brainstorm", "break-tasks", "development", "absorb"] },
+    "brainstorm":        { "skills": ["project-manager"],                       "chains_to": ["documentation"] },
+    "documentation":     { "skills": ["lead-architect", "business-analysis", "backend-developer", "devops-engineer", "qa-tester", "project-manager"], "chains_to": ["break-tasks"] },
+    "break-tasks":       { "skills": ["business-analysis", "lead-architect"],   "chains_to": ["implement-feature"] },
+    "implement-feature": { "skills": ["lead-architect", "backend-developer", "frontend-developer", "designer", "qa-tester", "project-manager"], "chains_to": ["gen-tests", "commit"] },
+    "development":       { "skills": [],                                        "chains_to": ["commit"] },
+    "ui-ux-design":      { "skills": ["designer", "frontend-developer"],        "chains_to": ["break-tasks"] },
+    "qa":                { "skills": ["qa-tester"],                             "chains_to": ["gen-tests"] },
+    "gen-tests":         { "skills": ["qa-tester"],                             "chains_to": ["commit"] },
+    "absorb":            { "skills": ["project-manager", "lead-architect", "business-analysis"], "chains_to": ["break-tasks"] },
+    "commit":            { "skills": [],                                        "chains_to": [] },
+    "bootstrap":         { "skills": ["lead-architect"],                        "chains_to": ["brainstorm"] },
+    "custom-behavior":   { "skills": ["project-manager"],                       "chains_to": [] }
   },
   "profiles": {
     "web-frontend": {
@@ -125,27 +164,33 @@
     },
     "fullstack-saas": {
       "name": "Fullstack SaaS",
-      "description": "Complete SaaS application with frontend, backend, and infrastructure",
+      "description": "Complete SaaS with frontend, backend, and infrastructure",
       "skills": ["frontend-developer", "backend-developer", "devops-engineer", "project-manager", "qa-tester"],
-      "optional": ["react-nextjs", "ai-engineer"]
+      "optional": ["react-nextjs", "ai-engineer", "lead-architect"]
     },
     "mobile-app": {
       "name": "Mobile App",
       "description": "React Native / Expo mobile application",
       "skills": ["mobile-developer", "designer", "qa-tester"],
-      "optional": ["backend-developer"]
+      "optional": ["backend-developer", "devops-engineer"]
     },
     "video-content": {
       "name": "Video Content Tool",
       "description": "Video creation and editing with Remotion",
       "skills": ["marketer", "frontend-developer", "remotion-best-practices"],
-      "optional": ["threejs"]
+      "optional": ["threejs", "designer"]
     },
     "ai-powered-app": {
       "name": "AI-Powered Application",
       "description": "Applications with LLM integration and AI features",
       "skills": ["ai-engineer", "frontend-developer", "backend-developer"],
-      "optional": ["lead-architect"]
+      "optional": ["lead-architect", "prompt-engineer"]
+    },
+    "blockchain-dapp": {
+      "name": "Blockchain dApp",
+      "description": "Decentralized application with smart contracts",
+      "skills": ["blockchain-engineer", "frontend-developer", "backend-developer"],
+      "optional": ["devops-engineer", "lead-architect"]
     }
   }
 }

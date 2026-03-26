@@ -1,723 +1,376 @@
 {
-  "version": "2.0.0",
-  "generated_at": "2026-02-20",
+  "version": "3.0.0",
+  "generated_at": "2026-03-26",
   "schema": "knowledge-graph",
+  "description": "Multi-layer routing graph: skills, workflows, rules, and MOCs",
   "nodes": {
     "ai-engineer": {
-      "name": "ai-engineer",
       "type": "skill",
       "domain": "ai",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 5311,
-      "path": "anti-chaotic/.agent/skills/ai-engineer/SKILL.md",
+      "path": ".agent/skills/ai-engineer/SKILL.md",
+      "triggers": ["AI", "LLM", "RAG", "prompt", "embedding", "fine-tune", "agentic"],
       "edges": {
-        "extends": [
-          "backend-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "prompt-engineer"
-        ],
+        "extends": ["backend-developer"],
+        "suggests": ["prompt-engineer"],
+        "enhances": ["frontend-developer"],
         "conflicts": [],
-        "enhances": [
-          "frontend-developer"
-        ],
-        "moc": [
-          "ai-development-moc"
-        ]
+        "moc": ["ai-development-moc"]
       }
     },
     "backend-developer": {
-      "name": "backend-developer",
       "type": "skill",
       "domain": "infra",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 5056,
-      "path": "anti-chaotic/.agent/skills/backend-developer/SKILL.md",
+      "path": ".agent/skills/backend-developer/SKILL.md",
+      "triggers": ["API", "database", "auth", "security", "microservice", "backend", "node", "python", "go"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "devops-engineer"
-        ],
+        "suggests": ["devops-engineer", "lead-architect"],
+        "enhances": ["frontend-developer"],
         "conflicts": [],
-        "enhances": [
-          "frontend-developer"
-        ],
-        "moc": [
-          "web-development-moc"
-        ]
+        "moc": ["infrastructure-moc"]
       }
     },
     "blockchain-engineer": {
-      "name": "blockchain-engineer",
       "type": "skill",
       "domain": "blockchain",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 6618,
-      "path": "anti-chaotic/.agent/skills/blockchain-engineer/SKILL.md",
+      "path": ".agent/skills/blockchain-engineer/SKILL.md",
+      "triggers": ["blockchain", "smart contract", "web3", "ethereum", "solidity", "defi"],
       "edges": {
-        "extends": [
-          "backend-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "devops-engineer"
-        ],
+        "extends": ["backend-developer"],
+        "suggests": ["devops-engineer"],
+        "enhances": ["backend-developer"],
         "conflicts": [],
-        "enhances": [
-          "backend-developer"
-        ],
-        "moc": [
-          "blockchain-moc"
-        ]
+        "moc": ["blockchain-moc"]
       }
     },
     "business-analysis": {
-      "name": "business-analysis",
       "type": "skill",
       "domain": "analysis",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 682,
-      "path": "anti-chaotic/.agent/skills/business-analysis/SKILL.md",
+      "path": ".agent/skills/business-analysis/SKILL.md",
+      "triggers": ["requirements", "domain", "compliance", "persona", "acceptance criteria", "user research"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "project-manager"
-        ],
+        "suggests": ["project-manager"],
+        "enhances": ["qa-tester", "lead-architect"],
         "conflicts": [],
-        "enhances": [
-          "qa-tester"
-        ],
-        "moc": [
-          "product-development-moc"
-        ]
+        "moc": ["product-development-moc"]
       }
     },
     "designer": {
-      "name": "designer",
       "type": "skill",
       "domain": "design",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 586,
-      "path": "anti-chaotic/.agent/skills/designer/SKILL.md",
+      "path": ".agent/skills/designer/SKILL.md",
+      "triggers": ["design", "figma", "UI", "UX", "design system", "accessibility", "branding"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "frontend-developer"
-        ],
+        "suggests": ["frontend-developer"],
+        "enhances": ["frontend-developer", "mobile-developer"],
         "conflicts": [],
-        "enhances": [
-          "frontend-developer"
-        ],
-        "moc": [
-          "design-moc"
-        ]
+        "moc": ["design-moc"]
       }
     },
     "devops-engineer": {
-      "name": "devops-engineer",
       "type": "skill",
       "domain": "infra",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 688,
-      "path": "anti-chaotic/.agent/skills/devops-engineer/SKILL.md",
+      "path": ".agent/skills/devops-engineer/SKILL.md",
+      "triggers": ["docker", "kubernetes", "CI/CD", "deployment", "monitoring", "terraform"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [],
+        "suggests": ["lead-architect"],
+        "enhances": ["backend-developer"],
         "conflicts": [],
-        "enhances": [
-          "backend-developer"
-        ],
-        "moc": [
-          "infrastructure-moc"
-        ]
+        "moc": ["infrastructure-moc"]
       }
     },
     "frontend-developer": {
-      "name": "frontend-developer",
       "type": "skill",
       "domain": "web",
-      "status": "stable",
-      "version": "3.2.0",
-      "estimated_tokens": 813,
-      "path": "anti-chaotic/.agent/skills/frontend-developer/SKILL.md",
+      "path": ".agent/skills/frontend-developer/SKILL.md",
+      "triggers": ["react", "vue", "angular", "css", "tailwind", "frontend", "component"],
+      "sub_skills": ["react-nextjs", "threejs"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [],
+        "suggests": ["designer"],
+        "enhances": ["designer"],
         "conflicts": [],
-        "enhances": [
-          "designer"
-        ],
-        "moc": [
-          "web-development-moc"
-        ]
+        "moc": ["design-moc"]
       }
     },
     "lead-architect": {
-      "name": "lead-architect",
       "type": "skill",
       "domain": "infra",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 581,
-      "path": "anti-chaotic/.agent/skills/lead-architect/SKILL.md",
+      "path": ".agent/skills/lead-architect/SKILL.md",
+      "triggers": ["architecture", "system design", "scalability", "ADR", "RFC", "tech spec"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "devops-engineer"
-        ],
+        "suggests": ["devops-engineer", "backend-developer"],
+        "enhances": ["project-manager"],
         "conflicts": [],
-        "enhances": [
-          "project-manager"
-        ],
-        "moc": [
-          "infrastructure-moc"
-        ]
+        "moc": ["infrastructure-moc"]
       }
     },
     "marketer": {
-      "name": "marketer",
       "type": "skill",
       "domain": "marketing",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 457,
-      "path": "anti-chaotic/.agent/skills/marketer/SKILL.md",
+      "path": ".agent/skills/marketer/SKILL.md",
+      "triggers": ["marketing", "SEO", "social media", "content strategy", "video"],
+      "sub_skills": ["remotion-best-practices"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "remotion-best-practices"
-        ],
-        "conflicts": [],
+        "suggests": ["designer", "frontend-developer"],
         "enhances": [],
-        "moc": [
-          "video-production-moc"
-        ]
-      }
-    },
-    "remotion-best-practices": {
-      "name": "remotion-best-practices",
-      "type": "capability",
-      "domain": "video",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 490,
-      "path": "anti-chaotic/.agent/skills/marketer/remotion-best-practices/SKILL.md",
-      "edges": {
-        "extends": [],
-        "requires": [
-          "frontend-developer"
-        ],
-        "suggests": [],
         "conflicts": [],
-        "enhances": [
-          "marketer"
-        ],
-        "moc": [
-          "video-production-moc"
-        ]
+        "moc": ["product-development-moc"]
       }
     },
     "mobile-developer": {
-      "name": "mobile-developer",
       "type": "skill",
       "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 671,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/SKILL.md",
+      "path": ".agent/skills/mobile-developer/SKILL.md",
+      "triggers": ["expo", "react-native", "ios", "android", "mobile", "app store"],
+      "sub_skills": ["api-routes", "building-ui", "data-fetching", "deployment", "dev-client", "tailwind-setup", "upgrading-expo", "use-dom", "cicd-workflows"],
       "edges": {
-        "extends": [
-          "frontend-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "backend-developer"
-        ],
+        "extends": ["frontend-developer"],
+        "suggests": ["backend-developer", "designer"],
+        "enhances": ["frontend-developer"],
         "conflicts": [],
-        "enhances": [
-          "frontend-developer"
-        ],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "api-routes": {
-      "name": "api-routes",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 2254,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/api-routes/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [
-          "backend-developer"
-        ],
-        "suggests": [
-          "deployment"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "building-ui": {
-      "name": "building-ui",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 2647,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/building-ui/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "tailwind-setup"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "cicd-workflows": {
-      "name": "cicd-workflows",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 938,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/cicd-workflows/SKILL.md",
-      "edges": {
-        "extends": [],
-        "requires": [
-          "mobile-developer"
-        ],
-        "suggests": [
-          "deployment"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": []
-      }
-    },
-    "data-fetching": {
-      "name": "data-fetching",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 2845,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/data-fetching/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "api-routes"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "deployment": {
-      "name": "deployment",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 1005,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/deployment/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "cicd-workflows"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "dev-client": {
-      "name": "dev-client",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 946,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/dev-client/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [],
-        "suggests": [
-          "building-ui"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "tailwind-setup": {
-      "name": "tailwind-setup",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 3075,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/tailwind-setup/SKILL.md",
-      "edges": {
-        "extends": [],
-        "requires": [],
-        "suggests": [],
-        "conflicts": [],
-        "enhances": [
-          "mobile-developer"
-        ],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "upgrading-expo": {
-      "name": "upgrading-expo",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 989,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/upgrading-expo/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [],
-        "suggests": [],
-        "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "mobile-development-moc"
-        ]
-      }
-    },
-    "use-dom": {
-      "name": "use-dom",
-      "type": "capability",
-      "domain": "mobile",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 2490,
-      "path": "anti-chaotic/.agent/skills/mobile-developer/use-dom/SKILL.md",
-      "edges": {
-        "extends": [
-          "mobile-developer"
-        ],
-        "requires": [
-          "frontend-developer"
-        ],
-        "suggests": [
-          "building-ui"
-        ],
-        "conflicts": [],
-        "enhances": [],
-        "moc": []
+        "moc": ["mobile-development-moc"]
       }
     },
     "project-manager": {
-      "name": "project-manager",
       "type": "skill",
       "domain": "management",
-      "status": "stable",
-      "version": "4.1.0",
-      "estimated_tokens": 632,
-      "path": "anti-chaotic/.agent/skills/project-manager/SKILL.md",
+      "path": ".agent/skills/project-manager/SKILL.md",
+      "triggers": ["roadmap", "PRD", "requirements", "user story", "prioritization", "RICE", "Kano"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [
-          "business-analysis"
-        ],
+        "suggests": ["business-analysis", "lead-architect"],
+        "enhances": ["business-analysis"],
         "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "product-development-moc"
-        ]
+        "moc": ["product-development-moc"]
       }
     },
     "prompt-engineer": {
-      "name": "prompt-engineer",
       "type": "skill",
       "domain": "ai",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 1849,
-      "path": "anti-chaotic/.agent/skills/prompt-engineer/SKILL.md",
+      "path": ".agent/skills/prompt-engineer/SKILL.md",
+      "triggers": ["prompt", "prompt engineering", "system prompt", "few-shot", "chain-of-thought"],
       "edges": {
-        "extends": [
-          "ai-engineer"
-        ],
-        "requires": [],
-        "suggests": [
-          "frontend-developer"
-        ],
+        "extends": ["ai-engineer"],
+        "suggests": ["frontend-developer"],
+        "enhances": ["project-manager", "ai-engineer"],
         "conflicts": [],
-        "enhances": [
-          "project-manager"
-        ],
-        "moc": [
-          "ai-development-moc"
-        ]
+        "moc": ["ai-development-moc"]
       }
     },
     "qa-tester": {
-      "name": "qa-tester",
       "type": "skill",
       "domain": "qa",
-      "status": "stable",
-      "version": "2.0.0",
-      "estimated_tokens": 626,
-      "path": "anti-chaotic/.agent/skills/qa-tester/SKILL.md",
+      "path": ".agent/skills/qa-tester/SKILL.md",
+      "triggers": ["testing", "test case", "QA", "bug", "E2E", "unit test", "playwright"],
       "edges": {
         "extends": [],
-        "requires": [],
-        "suggests": [],
+        "suggests": ["frontend-developer", "backend-developer"],
+        "enhances": ["business-analysis"],
         "conflicts": [],
-        "enhances": [],
-        "moc": [
-          "quality-assurance-moc"
-        ]
+        "moc": ["product-development-moc"]
       }
+    },
+
+    "workflow:guide": {
+      "type": "workflow",
+      "domain": "meta",
+      "path": ".agent/workflows/guide.md",
+      "triggers": ["help", "what should I do", "which workflow", "guide me", "lost"],
+      "invokes_skills": ["project-manager", "lead-architect"],
+      "chains_to": ["brainstorm", "break-tasks", "development", "absorb"]
+    },
+    "workflow:brainstorm": {
+      "type": "workflow",
+      "domain": "planning",
+      "path": ".agent/workflows/brainstorm.md",
+      "triggers": ["brainstorm", "idea", "new project", "requirements"],
+      "invokes_skills": ["project-manager"],
+      "chains_to": ["documentation"]
+    },
+    "workflow:documentation": {
+      "type": "workflow",
+      "domain": "planning",
+      "path": ".agent/workflows/documentation.md",
+      "triggers": ["documentation", "docs", "specs", "SDD"],
+      "invokes_skills": ["lead-architect", "business-analysis", "backend-developer", "devops-engineer", "qa-tester", "project-manager"],
+      "chains_to": ["break-tasks"]
+    },
+    "workflow:break-tasks": {
+      "type": "workflow",
+      "domain": "planning",
+      "path": ".agent/workflows/break-tasks.md",
+      "triggers": ["break tasks", "task breakdown", "decompose"],
+      "invokes_skills": ["business-analysis", "lead-architect"],
+      "chains_to": ["implement-feature"]
+    },
+    "workflow:implement-feature": {
+      "type": "workflow",
+      "domain": "development",
+      "path": ".agent/workflows/implement-feature.md",
+      "triggers": ["implement", "build feature", "code"],
+      "invokes_skills": ["lead-architect", "backend-developer", "frontend-developer", "designer", "qa-tester", "project-manager"],
+      "chains_to": ["gen-tests", "commit"]
+    },
+    "workflow:development": {
+      "type": "workflow",
+      "domain": "development",
+      "path": ".agent/workflows/development.md",
+      "triggers": ["fix", "bug", "quick change", "development"],
+      "invokes_skills": [],
+      "chains_to": ["commit"]
+    },
+    "workflow:ui-ux-design": {
+      "type": "workflow",
+      "domain": "design",
+      "path": ".agent/workflows/ui-ux-design.md",
+      "triggers": ["UI design", "UX", "wireframe", "mockup"],
+      "invokes_skills": ["designer", "frontend-developer"],
+      "chains_to": ["break-tasks"]
+    },
+    "workflow:qa": {
+      "type": "workflow",
+      "domain": "qa",
+      "path": ".agent/workflows/qa.md",
+      "triggers": ["QA", "test plan", "test cases"],
+      "invokes_skills": ["qa-tester"],
+      "chains_to": ["gen-tests"]
+    },
+    "workflow:gen-tests": {
+      "type": "workflow",
+      "domain": "qa",
+      "path": ".agent/workflows/gen-tests.md",
+      "triggers": ["generate tests", "write tests"],
+      "invokes_skills": ["qa-tester"],
+      "chains_to": ["commit"]
+    },
+    "workflow:absorb": {
+      "type": "workflow",
+      "domain": "research",
+      "path": ".agent/workflows/absorb.md",
+      "triggers": ["absorb", "study kit", "reference project", "copy patterns"],
+      "invokes_skills": ["project-manager", "lead-architect", "business-analysis"],
+      "chains_to": ["break-tasks"]
+    },
+    "workflow:commit": {
+      "type": "workflow",
+      "domain": "git",
+      "path": ".agent/workflows/commit.md",
+      "triggers": ["commit", "push", "save", "git"],
+      "invokes_skills": [],
+      "chains_to": []
+    },
+    "workflow:bootstrap": {
+      "type": "workflow",
+      "domain": "setup",
+      "path": ".agent/workflows/bootstrap.md",
+      "triggers": ["bootstrap", "setup", "scaffold"],
+      "invokes_skills": ["lead-architect"],
+      "chains_to": ["brainstorm"]
+    },
+    "workflow:custom-behavior": {
+      "type": "workflow",
+      "domain": "meta",
+      "path": ".agent/workflows/custom-behavior.md",
+      "triggers": ["customize", "rules", "behavior"],
+      "invokes_skills": ["project-manager"],
+      "chains_to": []
+    },
+
+    "rule:clean-code": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/clean-code.md"
+    },
+    "rule:documents": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/documents.md"
+    },
+    "rule:git-workflow": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/git-workflow.md"
+    },
+    "rule:nano-banana": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/nano-banana.md"
+    },
+    "rule:research": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/research.md"
+    },
+    "rule:skill-loading": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/skill-loading.md"
+    },
+    "rule:testing": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/testing.md"
+    },
+    "rule:workflow-advisor": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/workflow-advisor.md"
+    },
+    "rule:workflow-skill-convention": {
+      "type": "rule",
+      "trigger": "model_decision",
+      "path": ".agent/rules/workflow-skill-convention.md"
     }
   },
   "mocs": {
     "ai-development-moc": {
       "path": "mocs/ai-development-moc.md",
       "domain": "ai",
-      "skills": [
-        "ai-development-moc",
-        "ai-engineer",
-        "prompt-engineer",
-        "langchain",
-        "backend-  [[frontend-  [[skill-   [[openai-   [[evaluation-\ndeveloper",
-        "ai-integration",
-        "backend-developer",
-        "frontend-developer",
-        "skill-creator",
-        "devops-engineer",
-        "web-development-moc",
-        "infrastructure-moc",
-        "mobile-development-moc"
-      ]
+      "skills": ["ai-engineer", "prompt-engineer"]
     },
     "blockchain-moc": {
       "path": "mocs/blockchain-moc.md",
       "domain": "blockchain",
-      "skills": [
-        "blockchain-moc",
-        "blockchain-engineer",
-        "smart-contract-\n                    │                   auditor",
-        "solidity",
-        "rust-      [[web3-    [[formal-\n              anchor",
-        "defi-protocols",
-        "backend-developer",
-        "security-auditor",
-        "frontend-developer",
-        "web3-integration",
-        "devops-engineer",
-        "infrastructure-moc",
-        "web-development-moc",
-        "agent-skills-index"
-      ]
+      "skills": ["blockchain-engineer"]
     },
     "design-moc": {
       "path": "mocs/design-moc.md",
       "domain": "design",
-      "skills": [
-        "design-moc",
-        "designer",
-        "brand-\n                    │           designer",
-        "ui-design",
-        "ux-research",
-        "motion-\n                                    design",
-        "design-system",
-        "framer-motion",
-        "accessibility",
-        "frontend-developer",
-        "tailwind-setup",
-        "motion-design",
-        "mobile-developer",
-        "marketer",
-        "web-development-moc",
-        "mobile-development-moc",
-        "video-production-moc",
-        "agent-skills-index"
-      ]
+      "skills": ["designer", "frontend-developer"]
     },
     "infrastructure-moc": {
       "path": "mocs/infrastructure-moc.md",
       "domain": "infra",
-      "skills": [
-        "infrastructure-moc",
-        "devops-engineer",
-        "lead-architect",
-        "sre-engineer",
-        "docker-  [[cicd-      [[micro-   [[server-  [[monitoring",
-        "security",
-        "kubernetes",
-        "terraform",
-        "docker-compose",
-        "backend-developer",
-        "security-auditor",
-        "mobile-developer",
-        "blockchain-engineer",
-        "web-development-moc",
-        "ai-development-moc",
-        "agent-skills-index"
-      ]
+      "skills": ["devops-engineer", "lead-architect", "backend-developer"]
     },
     "mobile-development-moc": {
       "path": "mocs/mobile-development-moc.md",
       "domain": "mobile",
-      "skills": [
-        "mobile-development-moc",
-        "mobile-developer",
-        "ios-developer",
-        "building-ui",
-        "data-    [[deployment",
-        "swift-",
-        "tailwind-   [[api-     [[cicd-\n setup",
-        "use-dom",
-        "frontend-developer",
-        "tailwind-setup",
-        "deployment",
-        "cicd-workflows",
-        "data-fetching",
-        "api-routes",
-        "backend-developer",
-        "designer",
-        "web-development-moc",
-        "ai-development-moc",
-        "agent-skills-index"
-      ]
+      "skills": ["mobile-developer"]
     },
     "product-development-moc": {
       "path": "mocs/product-development-moc.md",
       "domain": "product",
-      "skills": [
-        "product-development-moc",
-        "project-manager",
-        "business-analysis",
-        "product-owner",
-        "roadmap",
-        "agile-    [[user-    [[technical- [[stakeholder",
-        "metrics",
-        "qa-tester",
-        "lead-architect",
-        "designer",
-        "marketer",
-        "web-development-moc",
-        "design-moc",
-        "agent-skills-index"
-      ]
-    },
-    "quality-assurance-moc": {
-      "path": "mocs/quality-assurance-moc.md",
-      "domain": "qa",
-      "skills": [
-        "quality-assurance-moc",
-        "qa-tester",
-        "test-automation",
-        "unit-testing",
-        "e2e-     [[security",
-        "cicd-\n                testing",
-        "frontend-  [[backend-\ndeveloper",
-        "frontend-developer",
-        "backend-developer",
-        "devops-engineer",
-        "cicd-workflows",
-        "security-auditor",
-        "web-development-moc",
-        "mobile-development-moc",
-        "agent-skills-index"
-      ]
-    },
-    "video-production-moc": {
-      "path": "mocs/video-production-moc.md",
-      "domain": "video",
-      "skills": [
-        "video-production-moc",
-        "marketer",
-        "video-\n        │                                       editor",
-        "remotion-best-                                ┌──────┴──────┐\npractices",
-        "motion-    [[color-\n        ▼                                 graphics",
-        "react-nextjs",
-        "frontend-developer",
-        "remotion-best-practices",
-        "designer",
-        "framer-motion",
-        "video-editor",
-        "web-development-moc",
-        "design-moc",
-        "agent-skills-index"
-      ]
-    },
-    "web-development-moc": {
-      "path": "mocs/web-development-moc.md",
-      "domain": "web",
-      "skills": [
-        "web-development-moc",
-        "frontend-developer",
-        "backend-developer",
-        "devops-engineer",
-        "vue-      [[python-  [[docker-  [[cicd-\n nextjs/   developer",
-        "remotion-best-practices",
-        "qa-tester",
-        "docker-compose",
-        "react-nextjs",
-        "mobile-developer",
-        "ai-engineer",
-        "video-production-moc",
-        "mobile-development-moc",
-        "ai-development-moc",
-        "infrastructure-moc"
-      ]
+      "skills": ["project-manager", "business-analysis", "qa-tester", "marketer"]
     }
   },
-  "conflict_matrix": {}
+  "workflow_chains": {
+    "new-project": ["brainstorm", "documentation", "break-tasks", "implement-feature", "commit"],
+    "new-feature": ["break-tasks", "implement-feature", "gen-tests", "commit"],
+    "bug-fix": ["development", "gen-tests", "commit"],
+    "ui-ux": ["ui-ux-design", "break-tasks", "implement-feature", "commit"],
+    "documentation-only": ["documentation", "commit"],
+    "study-kit": ["absorb", "break-tasks", "implement-feature", "commit"],
+    "mvp-sprint": ["brainstorm", "documentation", ["break-tasks", "implement-feature", "commit"]]
+  },
+  "conflict_matrix": {
+    "mobile-developer": { "conflicts_with": [], "note": "Can coexist with frontend-developer" },
+    "react-nextjs": { "conflicts_with": ["threejs"], "note": "Heavy sub-skills should not both be loaded" }
+  }
 }
