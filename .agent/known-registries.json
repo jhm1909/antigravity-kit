@@ -1,0 +1,181 @@
+{
+  "$schema": "Curated registry of trusted skill sources for /install-skill workflow",
+  "version": "1.0.0",
+  "updated": "2026-03-27",
+  "registries": [
+    {
+      "id": "anthropic-official",
+      "org": "anthropics",
+      "repo": "skills",
+      "url": "https://github.com/anthropics/skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "frontend-design", "description": "Frontend design and UI/UX development" },
+        { "name": "mcp-builder", "description": "Create MCP servers for external APIs" },
+        { "name": "webapp-testing", "description": "Test web apps using Playwright" },
+        { "name": "skill-creator", "description": "Guide for creating new skills" },
+        { "name": "docx", "description": "Create, edit, analyze Word documents" },
+        { "name": "pdf", "description": "Extract text, create PDFs, handle forms" },
+        { "name": "xlsx", "description": "Create, edit, analyze Excel spreadsheets" }
+      ]
+    },
+    {
+      "id": "vercel-engineering",
+      "org": "vercel-labs",
+      "repo": "agent-skills",
+      "url": "https://github.com/vercel-labs/agent-skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "react-best-practices", "description": "65+ React optimization rules from Vercel" },
+        { "name": "web-design-guidelines", "description": "Web design standards and guidelines" },
+        { "name": "composition-patterns", "description": "React component composition patterns" }
+      ]
+    },
+    {
+      "id": "vercel-next",
+      "org": "vercel-labs",
+      "repo": "next-skills",
+      "url": "https://github.com/vercel-labs/next-skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "next-best-practices", "description": "Next.js best practices and patterns" },
+        { "name": "next-cache-components", "description": "Caching strategies in Next.js" },
+        { "name": "next-upgrade", "description": "Upgrade Next.js projects" }
+      ]
+    },
+    {
+      "id": "stripe",
+      "org": "stripe",
+      "repo": "ai",
+      "url": "https://github.com/stripe/ai",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "stripe-best-practices", "description": "Best practices for Stripe integrations" },
+        { "name": "upgrade-stripe", "description": "Upgrade Stripe SDK and API versions" }
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "org": "cloudflare",
+      "repo": "skills",
+      "url": "https://github.com/cloudflare/skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "agents-sdk", "description": "Build stateful AI agents on Cloudflare" },
+        { "name": "building-mcp-server-on-cloudflare", "description": "Build remote MCP servers" },
+        { "name": "durable-objects", "description": "Stateful coordination with RPC and SQLite" },
+        { "name": "web-perf", "description": "Audit Core Web Vitals" },
+        { "name": "wrangler", "description": "Deploy Workers, KV, R2, D1, Queues" }
+      ]
+    },
+    {
+      "id": "trailofbits-security",
+      "org": "trailofbits",
+      "repo": "skills",
+      "url": "https://github.com/trailofbits/skills",
+      "trust": "official",
+      "skills_path": "plugins/",
+      "skills": [
+        { "name": "static-analysis", "description": "CodeQL, Semgrep, and SARIF toolkit" },
+        { "name": "semgrep-rule-creator", "description": "Create Semgrep vulnerability rules" },
+        { "name": "differential-review", "description": "Security-focused diff review" },
+        { "name": "property-based-testing", "description": "Property testing for multiple languages" },
+        { "name": "modern-python", "description": "Modern Python: uv, ruff, ty, pytest" },
+        { "name": "insecure-defaults", "description": "Detect hardcoded secrets, weak crypto" }
+      ]
+    },
+    {
+      "id": "sentry",
+      "org": "getsentry",
+      "repo": "skills",
+      "url": "https://github.com/getsentry/skills",
+      "trust": "official",
+      "skills_path": "plugins/sentry-skills/skills/",
+      "skills": [
+        { "name": "code-review", "description": "Sentry's code review workflow" },
+        { "name": "find-bugs", "description": "Find and identify bugs in code" },
+        { "name": "create-pr", "description": "Create pull requests" },
+        { "name": "commit", "description": "Create commits with best practices" }
+      ]
+    },
+    {
+      "id": "openai",
+      "org": "openai",
+      "repo": "skills",
+      "url": "https://github.com/openai/skills",
+      "trust": "official",
+      "skills_path": "skills/.curated/",
+      "skills": [
+        { "name": "security-best-practices", "description": "Language-specific security review" },
+        { "name": "security-threat-model", "description": "Generate repo-specific threat models" },
+        { "name": "playwright", "description": "Browser automation for testing" },
+        { "name": "jupyter-notebook", "description": "Clean, reproducible Jupyter notebooks" }
+      ]
+    },
+    {
+      "id": "supabase",
+      "org": "supabase",
+      "repo": "agent-skills",
+      "url": "https://github.com/supabase/agent-skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "supabase-postgres-best-practices", "description": "PostgreSQL best practices for Supabase" }
+      ]
+    },
+    {
+      "id": "google-gemini",
+      "org": "google-gemini",
+      "repo": "gemini-skills",
+      "url": "https://github.com/google-gemini/gemini-skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "gemini-api-dev", "description": "Best practices for Gemini API apps" },
+        { "name": "gemini-live-api-dev", "description": "Real-time streaming with Gemini Live API" }
+      ]
+    },
+    {
+      "id": "expo",
+      "org": "expo",
+      "repo": "skills",
+      "url": "https://github.com/expo/skills",
+      "trust": "official",
+      "skills_path": "plugins/expo/skills/",
+      "skills": [
+        { "name": "building-native-ui", "description": "Expo Router, styling, animations" },
+        { "name": "native-data-fetching", "description": "Network requests, caching, offline" }
+      ]
+    },
+    {
+      "id": "huggingface",
+      "org": "huggingface",
+      "repo": "skills",
+      "url": "https://github.com/huggingface/skills",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "huggingface-gradio", "description": "Build Gradio apps on HF Spaces" },
+        { "name": "transformers.js", "description": "Run ML models in the browser" },
+        { "name": "hugging-face-model-trainer", "description": "Train models with TRL: SFT, DPO, GRPO" }
+      ]
+    },
+    {
+      "id": "figma",
+      "org": "figma",
+      "repo": "mcp-server-guide",
+      "url": "https://github.com/figma/mcp-server-guide",
+      "trust": "official",
+      "skills_path": "skills/",
+      "skills": [
+        { "name": "figma-implement-design", "description": "Figma design to production code" },
+        { "name": "figma-generate-design", "description": "Build screens in Figma from code" }
+      ]
+    }
+  ]
+}
