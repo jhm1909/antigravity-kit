@@ -163,6 +163,30 @@
       "triggers": ["game", "game dev", "game loop", "sprites", "physics", "Unity", "Godot", "platformer"],
       "sub_skills": ["2d-games", "3d-games", "web-games", "mobile-games", "pc-games", "vr-ar", "game-design", "multiplayer", "game-art", "game-audio"],
       "used_by_workflows": ["implement-feature"]
+    },
+    "context-engineering": {
+      "name": "Context Engineering",
+      "description": "Context engineering for AI agents. Token optimization, progressive disclosure, memory systems, multi-agent coordination.",
+      "size": "36K",
+      "dependencies": [],
+      "triggers": ["context", "token", "context window", "progressive disclosure", "memory", "multi-agent", "compaction"],
+      "used_by_workflows": []
+    },
+    "debugging": {
+      "name": "Debugging",
+      "description": "Systematic debugging: root cause analysis, defense-in-depth, verification gates. 4 sub-methodologies.",
+      "size": "28K",
+      "dependencies": [],
+      "triggers": ["debug", "bug", "root cause", "stack trace", "fix", "regression", "test failure"],
+      "used_by_workflows": ["implement-feature", "development"]
+    },
+    "code-review": {
+      "name": "Code Review",
+      "description": "Code review: verification gates, feedback reception, evidence-based claims. No completion without verification.",
+      "size": "20K",
+      "dependencies": [],
+      "triggers": ["review", "PR", "pull request", "feedback", "verification", "completion", "done"],
+      "used_by_workflows": ["implement-feature", "commit"]
     }
   },
   "workflows": {

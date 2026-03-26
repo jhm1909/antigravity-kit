@@ -267,6 +267,7 @@ function cmdVerify() {
   require(verifyPath);
 }
 
+
 function cmdHelp() {
   banner();
   log(`${c.bold}Usage:${c.reset} ag-kit <command> [options]`);

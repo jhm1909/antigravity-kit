@@ -17,43 +17,28 @@ description: Analyze ideas with the user and create preliminary high-level docum
 ## Step 1: Iterative Requirement Analysis & Research
 
 > [!IMPORTANT]
-> **LOOP THIS STEP**: You must cycle through the following sub-steps until the user's requirements are crystal clear and you have sufficient information to build high-quality documents.
+> **LOOP THIS STEP**: Cycle until the user's requirements are crystal clear.
 
 **Goal**: Achieve a "Shared Understanding" with the user.
 
 1. **Analyze (Internal)**:
-   - Use `mcp_sequential-thinking_sequentialthinking` to breakdown the request and brainstorm solutions.
-   - Explore different angles, edge cases, and creative possibilities.
-   - Identify gaps in logic, missing features, or ambiguous terms.
-   - Formulate specific search queries to fill knowledge gaps.
+   - Use `mcp_sequential-thinking_sequentialthinking` to breakdown the request.
+   - Explore angles, edge cases, and creative possibilities.
+   - Identify gaps, missing features, or ambiguous terms.
 
 2. **Research (External)**:
-   - Use `search_web` (and `read_url_content` if specific URLs are found) to:
-     - Understand domain-specific terms or competitors.
-     - Find "best practices" or "standard implementations" for the requested features.
-     - Verify technical feasibility.
+   - Use `search_web` to understand domain, competitors, best practices.
+   - Use `read_url_content` for specific references.
+   - Verify technical feasibility.
 
 3. **Clarify (Interaction)**:
-   - Based on Analysis and Research, summarize findings.
-   - Create an Antigravity Implement Plan Artifact containing:
-     - Summary of current understanding.
-     - Specific questions to resolve ambiguities (e.g., "For feature Y, do you prefer approach A or B?").
-     - Assumptions that need confirmation.
-   - **Ask User**: Present the artifact and ask the user to review and answer the questions.
+   - Summarize findings in an artifact.
+   - Ask specific questions to resolve ambiguities.
    - **WAIT** for user response.
 
 4. **Evaluation**:
-   - If the user provides new info, **GO TO STEP 1.1** (Repeat Loop).
-   - If the user confirms "Everything is clear" or "Looks good, proceed", **BREAK LOOP** and go to Step 2.
-
----
-
-## Document Priority Order
-
-```
-Priority 0: Roadmap       ← Project Planning & Timeline
-Priority 1: PRD           ← Strategic Overview
-```
+   - New info? → **GO TO 1.1** (Repeat).
+   - User confirms → **BREAK LOOP**, go to Step 2.
 
 ---
 
@@ -61,34 +46,123 @@ Priority 1: PRD           ← Strategic Overview
 
 // turbo
 
-> 💡 **MCP**: Use `sequential-thinking` for phased planning and risk assessment based on the "Clear Requirements" from Step 1.
+> 💡 **MCP**: Use `sequential-thinking` for phased planning and risk assessment.
 
 1. **Invoke `[product-manager]` skill** to draft:
    - Project timeline and milestones
    - Phase breakdown (MVP, v1.0, v2.0)
-   - Key deliverables per phase
-2. Create `draft-roadmap.md` artifact
-3. After approval → Save to `docs/010-Planning/Roadmap-{ProjectName}.md` (Ask user for ProjectName if unknown)
+   - Key deliverables per phase — **each major feature becomes a wiki-link**: `[[Epic-{Feature}]]`
+2. Create `draft-roadmap.md` artifact for review
+3. After approval → Save to `docs/010-Planning/Roadmap-{ProjectName}.md`
 4. **WAIT** for user response
 
 ---
 
-## Step 3: Create PRD
+## Step 3: Create PRD & Atomized Feature Docs
 
 // turbo
 
-1. **Invoke `[product-manager]` skill** to draft:
+> [!IMPORTANT]  
+> **AI-OPTIMIZED RULE**: 1 file = 1 concept. Never dump all features into 1 monolithic PRD.
+> All files MUST follow `documents.md` conventions: frontmatter, naming, wiki-links.
+
+### Step 3.1: PRD Overview
+
+1. **Invoke `[product-manager]` skill** to draft a **concise** PRD overview:
    - Business objectives and success metrics
-   - Target audience/user personas
-   - Feature prioritization (MoSCoW)
-   - Technical constraints (identified during Research loop)
-2. Create `draft-prd.md` artifact
-3. After approval → Save to `docs/020-Requirements/PRD-{ProjectName}.md`
-4. **WAIT** for user response
+   - Target audience/user personas (brief)
+   - Feature list — each feature is a wiki-link: `[[Epic-{Feature}]]`
+   - Technical constraints
+2. Save to `docs/020-Requirements/PRD-{ProjectName}.md`
+
+> [!TIP]  
+> PRD should be **max 50-80 lines**. Details go in individual Epic/Use Case files.
+
+### Step 3.2: Create Individual Epic Files
+
+For **each major feature** identified in the PRD:
+
+1. Create `docs/022-User-Stories/Epics/Epic-{FeatureName}.md` with:
+
+```yaml
+---
+id: EPIC-{NNN}
+type: epic
+status: draft
+created: YYYY-MM-DD
+linked-to: [[PRD-{ProjectName}]]
+---
+```
+
+Content sections:
+- **Summary** — What this feature does (2-3 sentences)
+- **User Value** — Why users need this
+- **Scope** — What's included, what's explicitly NOT included
+- **Acceptance Criteria** — Checkable conditions for "done"
+- **Related**: `[[UC-{NN}-{Feature}]]`, `[[Story-{Feature}]]`
+
+### Step 3.3: Create Individual Use Case Files
+
+For **each feature** that has user-facing flows:
+
+1. Create `docs/020-Requirements/Use-Cases/UC-{NN}-{FeatureName}.md` with:
+
+```yaml
+---
+id: UC-{NN}
+type: use-case
+status: draft
+created: YYYY-MM-DD
+linked-to: [[Epic-{FeatureName}]]
+---
+```
+
+Content sections:
+- **Actor** — Who performs this action
+- **Preconditions** — What must be true before
+- **Main Flow** — Numbered steps (happy path)
+- **Alternative Flows** — Edge cases, error handling
+- **Postconditions** — What's true after success
+
+### Step 3.4: Create MOC Files
+
+Create/update Map of Content files for each populated folder:
+
+- `docs/010-Planning/Planning-MOC.md` — links to Roadmap
+- `docs/020-Requirements/Requirements-MOC.md` — links to PRD + Use Cases
+- `docs/022-User-Stories/Stories-MOC.md` — links to all Epics
+
+**WAIT** for user to review all artifacts before proceeding.
 
 ---
 
-## Step 4: Transition to Documentation
+## Step 4: Transition
 
-1. Present summary of created artifacts (Roadmap, PRD).
-2. Suggest next step: Run `/documentation` to generate detailed specifications (SDD, Epics, Stories).
+1. Present summary:
+   - File count created
+   - Wiki-link graph (which files reference which)
+   - Any gaps identified
+2. Suggest next step: `/documentation` (SDD, Stories) or `/implement-feature`
+
+---
+
+## Quick Reference
+
+| Step | Skill           | Output |
+| :--- | :-------------- | :----- |
+| 1    | (analysis loop) | Shared understanding |
+| 2    | product-manager | `Roadmap-{Name}.md` |
+| 3.1  | product-manager | `PRD-{Name}.md` (overview) |
+| 3.2  | product-manager | `Epic-{Feature}.md` × N |
+| 3.3  | business-analysis | `UC-{NN}-{Feature}.md` × N |
+| 3.4  | — | MOC files |
+
+## AI-Optimization Checklist
+
+Before finishing, verify:
+- [ ] Every file has frontmatter (id, type, status, created, linked-to)
+- [ ] PRD references all Epics via `[[wiki-links]]`
+- [ ] Roadmap phases reference Epics via `[[wiki-links]]`
+- [ ] Each Epic references its Use Cases
+- [ ] MOC files list all documents in their folder
+- [ ] No file exceeds ~100 lines (split if necessary)

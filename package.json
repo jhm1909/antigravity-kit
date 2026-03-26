@@ -18,7 +18,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node cli/index.js --help"
+    "test": "node cli/verify.js ."
   },
   "keywords": [
     "ai",

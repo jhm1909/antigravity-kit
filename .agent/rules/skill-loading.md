@@ -81,3 +81,20 @@ mobile-developer (8K)
   └─ suggests: backend-developer, designer
 Total: ~12K tokens
 ```
+
+## Progressive Disclosure (from Anthropic's skill-creator)
+
+Skills should follow a **3-level loading** strategy to minimize token usage:
+
+| Level | What | When |
+|-------|------|------|
+| **L1: Metadata** | `skills-manifest.json` entry (name, triggers, size) | Always loaded — routing decisions |
+| **L2: SKILL.md** | Main instruction file — **≤ 150 lines** | Loaded when skill is activated |
+| **L3: references/** | Deep docs, examples, sub-skills | Loaded on-demand when specific topic needed |
+
+**Key rules:**
+- SKILL.md **MUST** stay under 150 lines — force progressive disclosure
+- Description in manifest **MUST** be < 200 chars — for efficient discovery
+- Put detailed content in `references/` folder, link from SKILL.md
+- Never front-load everything — load deep context only when task requires it
+

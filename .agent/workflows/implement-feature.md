@@ -31,15 +31,38 @@ description: Orchestrates feature implementation from specification to deploymen
 
 ---
 
-## Step 2: Quick Specification (Optional)
+## Step 2: Specification (Choose Depth)
 
 **Skip if**: User Stories or specs already exist in `docs/`.
 
-> 💡 **MCP**: Use `sequential-thinking` to analyze ambiguous requirements
+> 💡 **MCP**: Use `sequential-thinking` to analyze requirements and assess complexity.
+
+**Assess the feature scope, then present options to the user:**
+
+```
+"Feature này cần plan ở mức nào?"
+  📝 Deep Plan — tạo Spec + Design + Story trong docs/ (feature lớn, nhiều component)
+  ⚡ Quick Spec — tóm tắt nhanh rồi code luôn (feature vừa/nhỏ)
+```
+
+### Option A: ⚡ Quick Spec
 
 1. **Invoke `[product-manager]` skill** to clarify requirements
 2. Create `feature-spec.md` artifact with: Goal, User, Acceptance Criteria
 3. **WAIT** for user confirmation
+
+### Option B: 📝 Deep Plan (Dewey Docs)
+
+> [!IMPORTANT]
+> All files MUST follow `documents.md` conventions: frontmatter, naming, wiki-links.
+
+1. **Invoke `[lead-architect]` + `[business-analysis]`** to create:
+   - `docs/030-Specs/Spec-{FeatureName}.md` — Why, Requirements (SHALL/MUST), Scope
+2. **Invoke `[lead-architect]` + `[research-first]`** to create:
+   - `docs/040-Design/Specs/Design-{FeatureName}.md` — Context, Goals/Non-Goals, Decisions, Risks
+3. **Invoke `[backend-developer]` + `[frontend-developer]`** to create:
+   - `docs/022-User-Stories/Backlog/Story-{FeatureName}.md` — User story, acceptance criteria, task checklist
+4. **WAIT** for user to review all 3 documents before proceeding
 
 ---
 

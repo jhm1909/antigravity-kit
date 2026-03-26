@@ -216,6 +216,45 @@
         "moc": ["game-development-moc"]
       }
     },
+    "context-engineering": {
+      "type": "skill",
+      "domain": "meta",
+      "path": ".agent/skills/context-engineering/SKILL.md",
+      "triggers": ["context", "token", "context window", "progressive disclosure", "memory", "compaction"],
+      "edges": {
+        "extends": [],
+        "suggests": ["ai-engineer"],
+        "enhances": ["project-manager", "lead-architect"],
+        "conflicts": [],
+        "moc": ["ai-development-moc"]
+      }
+    },
+    "debugging": {
+      "type": "skill",
+      "domain": "qa",
+      "path": ".agent/skills/debugging/SKILL.md",
+      "triggers": ["debug", "bug", "root cause", "stack trace", "fix", "regression"],
+      "edges": {
+        "extends": [],
+        "suggests": ["qa-tester", "code-review"],
+        "enhances": ["backend-developer", "frontend-developer"],
+        "conflicts": [],
+        "moc": ["product-development-moc"]
+      }
+    },
+    "code-review": {
+      "type": "skill",
+      "domain": "qa",
+      "path": ".agent/skills/code-review/SKILL.md",
+      "triggers": ["review", "PR", "pull request", "feedback", "verification", "completion"],
+      "edges": {
+        "extends": [],
+        "suggests": ["debugging", "qa-tester"],
+        "enhances": ["backend-developer", "frontend-developer"],
+        "conflicts": [],
+        "moc": ["product-development-moc"]
+      }
+    },
 
     "workflow:guide": {
       "type": "workflow",
