@@ -176,6 +176,85 @@
         "moc": ["product-development-moc"]
       }
     },
+    "nextjs-react-expert": {
+      "type": "skill",
+      "domain": "web",
+      "path": ".agent/skills/nextjs-react-expert/SKILL.md",
+      "triggers": ["nextjs", "next.js", "RSC", "server component", "app router", "waterfall", "bundle size"],
+      "edges": {
+        "extends": ["frontend-developer"],
+        "suggests": ["tailwind-patterns"],
+        "enhances": ["frontend-developer"],
+        "conflicts": [],
+        "moc": ["design-moc"]
+      }
+    },
+    "tailwind-patterns": {
+      "type": "skill",
+      "domain": "web",
+      "path": ".agent/skills/tailwind-patterns/SKILL.md",
+      "triggers": ["tailwind", "tailwindcss", "css utility", "design tokens", "container queries"],
+      "edges": {
+        "extends": ["frontend-developer"],
+        "suggests": ["designer"],
+        "enhances": ["frontend-developer"],
+        "conflicts": [],
+        "moc": ["design-moc"]
+      }
+    },
+    "i18n-localization": {
+      "type": "skill",
+      "domain": "web",
+      "path": ".agent/skills/i18n-localization/SKILL.md",
+      "triggers": ["i18n", "localization", "translation", "RTL", "locale", "multilingual"],
+      "edges": {
+        "extends": [],
+        "suggests": ["frontend-developer"],
+        "enhances": ["frontend-developer", "mobile-developer"],
+        "conflicts": [],
+        "moc": ["product-development-moc"]
+      }
+    },
+    "mcp-builder": {
+      "type": "skill",
+      "domain": "ai",
+      "path": ".agent/skills/mcp-builder/SKILL.md",
+      "triggers": ["MCP", "model context protocol", "MCP server", "tool design"],
+      "edges": {
+        "extends": ["backend-developer"],
+        "suggests": ["ai-engineer"],
+        "enhances": ["ai-engineer"],
+        "conflicts": [],
+        "moc": ["ai-development-moc"]
+      }
+    },
+    "app-builder": {
+      "type": "skill",
+      "domain": "meta",
+      "path": ".agent/skills/app-builder/SKILL.md",
+      "triggers": ["new app", "scaffold", "full-stack", "starter", "template"],
+      "edges": {
+        "extends": [],
+        "suggests": ["lead-architect", "frontend-developer", "backend-developer"],
+        "enhances": ["project-manager"],
+        "conflicts": [],
+        "moc": ["product-development-moc"]
+      }
+    },
+    "game-development": {
+      "type": "skill",
+      "domain": "game",
+      "path": ".agent/skills/game-development/SKILL.md",
+      "triggers": ["game", "game dev", "game loop", "sprites", "physics", "Unity", "Godot"],
+      "sub_skills": ["2d-games", "3d-games", "web-games", "mobile-games", "pc-games", "vr-ar", "game-design", "multiplayer", "game-art", "game-audio"],
+      "edges": {
+        "extends": [],
+        "suggests": ["frontend-developer", "designer"],
+        "enhances": [],
+        "conflicts": [],
+        "moc": ["game-development-moc"]
+      }
+    },
 
     "workflow:guide": {
       "type": "workflow",
@@ -332,7 +411,7 @@
     "ai-development-moc": {
       "path": "mocs/ai-development-moc.md",
       "domain": "ai",
-      "skills": ["ai-engineer", "prompt-engineer"]
+      "skills": ["ai-engineer", "prompt-engineer", "mcp-builder"]
     },
     "blockchain-moc": {
       "path": "mocs/blockchain-moc.md",
@@ -342,7 +421,7 @@
     "design-moc": {
       "path": "mocs/design-moc.md",
       "domain": "design",
-      "skills": ["designer", "frontend-developer"]
+      "skills": ["designer", "frontend-developer", "nextjs-react-expert", "tailwind-patterns"]
     },
     "infrastructure-moc": {
       "path": "mocs/infrastructure-moc.md",
@@ -357,7 +436,12 @@
     "product-development-moc": {
       "path": "mocs/product-development-moc.md",
       "domain": "product",
-      "skills": ["project-manager", "business-analysis", "qa-tester", "marketer"]
+      "skills": ["project-manager", "business-analysis", "qa-tester", "marketer", "i18n-localization", "app-builder"]
+    },
+    "game-development-moc": {
+      "path": "mocs/game-development-moc.md",
+      "domain": "game",
+      "skills": ["game-development"]
     }
   },
   "workflow_chains": {

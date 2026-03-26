@@ -7,6 +7,7 @@
  *   init [--profile <name>] [--force]  Install the agent kit
  *   list                               Show available profiles
  *   status                             Check installed kit version
+ *   verify                             Run kit integrity checks
  */
 
 const fs = require('fs');
@@ -260,6 +261,12 @@ function cmdStatus() {
   log();
 }
 
+function cmdVerify() {
+  // Delegate to verify.js
+  const verifyPath = path.join(__dirname, 'verify.js');
+  require(verifyPath);
+}
+
 function cmdHelp() {
   banner();
   log(`${c.bold}Usage:${c.reset} ag-kit <command> [options]`);
@@ -270,6 +277,7 @@ function cmdHelp() {
   log(`  ${c.cyan}init --force${c.reset}             Overwrite existing installation`);
   log(`  ${c.cyan}list${c.reset}                     Show available profiles and skills`);
   log(`  ${c.cyan}status${c.reset}                   Check installed kit version and stats`);
+  log(`  ${c.cyan}verify${c.reset}                   Run kit integrity checks`);
   log(`  ${c.cyan}help${c.reset}                     Show this help message`);
   log();
   log(`${c.bold}Examples:${c.reset}`);
@@ -321,6 +329,9 @@ function main() {
       break;
     case 'status':
       cmdStatus();
+      break;
+    case 'verify':
+      cmdVerify();
       break;
     case 'help':
     case null:

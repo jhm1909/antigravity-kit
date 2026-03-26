@@ -138,6 +138,55 @@
       "dependencies": ["frontend-developer"],
       "triggers": ["threejs", "three.js", "3D", "webgl", "scene", "camera", "renderer"],
       "router": "./skills/frontend-developer/threejs/router.json"
+    },
+    "nextjs-react-expert": {
+      "name": "Next.js & React Performance Expert",
+      "description": "React and Next.js performance optimization from Vercel Engineering. 57 rules across 8 categories.",
+      "size": "40K",
+      "dependencies": ["frontend-developer"],
+      "triggers": ["nextjs", "next.js", "RSC", "server component", "app router", "waterfall", "bundle size", "performance"],
+      "used_by_workflows": ["implement-feature"]
+    },
+    "tailwind-patterns": {
+      "name": "Tailwind CSS v4 Patterns",
+      "description": "Tailwind CSS v4 principles. CSS-first config, container queries, design tokens.",
+      "size": "8K",
+      "dependencies": ["frontend-developer"],
+      "triggers": ["tailwind", "tailwindcss", "css utility", "design tokens", "container queries", "dark mode"],
+      "used_by_workflows": ["ui-ux-design", "implement-feature"]
+    },
+    "i18n-localization": {
+      "name": "i18n & Localization",
+      "description": "Internationalization patterns. Translations, locale files, RTL support.",
+      "size": "4K",
+      "dependencies": [],
+      "triggers": ["i18n", "localization", "translation", "RTL", "locale", "multilingual", "react-i18next"],
+      "used_by_workflows": ["implement-feature"]
+    },
+    "mcp-builder": {
+      "name": "MCP Builder",
+      "description": "Model Context Protocol server building. Tool design, resource patterns.",
+      "size": "4K",
+      "dependencies": [],
+      "triggers": ["MCP", "model context protocol", "MCP server", "tool design", "resource pattern"],
+      "used_by_workflows": []
+    },
+    "app-builder": {
+      "name": "App Builder",
+      "description": "Application scaffolding orchestrator. 13 project templates, tech stack selection.",
+      "size": "80K",
+      "dependencies": [],
+      "triggers": ["new app", "scaffold", "full-stack", "starter", "template", "SaaS", "monorepo"],
+      "used_by_workflows": ["bootstrap"]
+    },
+    "game-development": {
+      "name": "Game Development",
+      "description": "Game dev orchestrator with 10 sub-skills. Core principles + platform routing.",
+      "size": "48K",
+      "dependencies": [],
+      "triggers": ["game", "game dev", "game loop", "sprites", "physics", "Unity", "Godot", "platformer"],
+      "sub_skills": ["2d-games", "3d-games", "web-games", "mobile-games", "pc-games", "vr-ar", "game-design", "multiplayer", "game-art", "game-audio"],
+      "used_by_workflows": ["implement-feature"]
     }
   },
   "workflows": {
