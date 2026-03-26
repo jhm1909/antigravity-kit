@@ -1,14 +1,18 @@
 ---
 name: frontend-developer
 description: >
-  Foundation for all frontend development. Use when implementing UI code, optimizing performance, or ensuring accessibility.
+  Foundation for all frontend development. Use when implementing UI code,
+  optimizing performance, or ensuring accessibility.
+  Includes Vercel React performance rules and composition patterns.
 license: MIT
 compatibility: Claude Code, Cursor, Gemini CLI, GitHub Copilot
 metadata:
   author: jhm1909
-  version: "3.2.0"
+  version: "4.0.0"
   domain: web
-  estimated_tokens: 3500
+  estimated_tokens: 5000
+  sources:
+    - vercel-labs/agent-skills (react-best-practices, composition-patterns)
 ---
 
 # Frontend Developer
@@ -24,7 +28,7 @@ Foundation skill for web frontend development. Framework-agnostic patterns for p
 - **enhances**: [[designer]] (implementation of designs)
 - **moc**: [[web-development-moc]]
 
-## 🛑 THE GOLDEN RULE: "Quote First"
+## ?�� THE GOLDEN RULE: "Quote First"
 
 **You must NEVER write code without first citing your source.**
 
@@ -35,12 +39,12 @@ Before implementing:
 
 _If no source found, PAUSE and `search_web` or ask._
 
-## 🧠 Core Philosophy
+## ?�� Core Philosophy
 
-1. **Zero-Bundle Budget** — Every kilobyte justifies existence
-2. **Hydration is Overhead** — Static when possible
-3. **User Waits for Nothing** — Optimistic UI, non-blocking main thread
-4. **Accessibility is NOT Optional** — `<div onClick>` is a bug
+1. **Zero-Bundle Budget** ??Every kilobyte justifies existence
+2. **Hydration is Overhead** ??Static when possible
+3. **User Waits for Nothing** ??Optimistic UI, non-blocking main thread
+4. **Accessibility is NOT Optional** ??`<div onClick>` is a bug
 
 ## Framework Specializations
 
@@ -77,17 +81,17 @@ Load framework-specific guides as needed:
 **Next.js Project:**
 ```
 User: "Build a Next.js app with App Router"
-→ Load frontend-developer/react-nextjs/README.md
-→ Follow Server Components patterns
-→ Implement loading.tsx, error.tsx
+??Load frontend-developer/react-nextjs/README.md
+??Follow Server Components patterns
+??Implement loading.tsx, error.tsx
 ```
 
 **3D Product Viewer:**
 ```
 User: "Add a 3D model viewer to my React app"
-→ Load frontend-developer/threejs/README.md
-→ Set up React Three Fiber
-→ Configure Canvas, lights, controls
+??Load frontend-developer/threejs/README.md
+??Set up React Three Fiber
+??Configure Canvas, lights, controls
 ```
 
 ## Quick Rules
@@ -98,14 +102,23 @@ User: "Add a 3D model viewer to my React app"
 | Accessibility | All images need `alt`, interactive elements need focus |
 | Bundles | Code-split by route, lazy load below fold |
 | Images | Use modern formats (WebP, AVIF), provide fallbacks |
+| React Perf | Eliminate waterfalls, no barrel imports (Vercel rules) |
+| Composition | Compound components over boolean props (Vercel patterns) |
+
+## References
+
+| Reference | Purpose |
+|:----------|:--------|
+| `react_performance_rules.md` | 65 Vercel React/Next.js perf rules (8 categories) |
+| `composition_patterns.md` | React composition patterns (Vercel) |
 
 ## Related Skills
 
-- [[react-nextjs]] — React & Next.js specific
-- [[vue-developer]] — Vue & Nuxt specific
-- [[backend-developer]] — When building fullstack
-- [[designer]] — Design system implementation
-- [[qa-tester]] — E2E testing
+- [[react-nextjs]] ??React & Next.js specific
+- [[vue-developer]] ??Vue & Nuxt specific
+- [[backend-developer]] ??When building fullstack
+- [[designer]] ??Design system implementation
+- [[qa-tester]] ??E2E testing
 
 ---
 

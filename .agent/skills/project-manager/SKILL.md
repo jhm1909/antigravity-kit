@@ -1,14 +1,18 @@
 ---
 name: project-manager
 description: >
-  Project planning, roadmapping, requirements, prioritization, and skill management. Use for PRDs, user stories, RICE/Kano, and process automation.
+  Project planning, roadmapping, requirements, prioritization, and skill management.
+  Use for PRDs, user stories, RICE/Kano, discovery, and process automation.
+  Upgraded with Dean Peters product management frameworks.
 license: MIT
 compatibility: Claude Code, Cursor, Gemini CLI, GitHub Copilot
 metadata:
   author: jhm1909
-  version: "4.1.0"
+  version: "5.0.0"
   domain: management
-  estimated_tokens: 9600
+  estimated_tokens: 12000
+  sources:
+    - deanpeters/Product-Manager-Skills (discovery, PRD, JTBD, 73 PM skills)
 ---
 
 # Project Manager
@@ -21,7 +25,7 @@ Deliver value through efficient systems and clear processes.
 - **requires**: []
 - **suggests**: [[business-analysis]], [[qa-tester]], [[lead-architect]], [[designer]]
 - **conflicts**: []
-- **enhances": [[frontend-developer]], [[backend-developer]], [[mobile-developer]] (skill detection), [[business-analysis]] (requirements)
+- **enhances**: [[frontend-developer]], [[backend-developer]], [[mobile-developer]] (skill detection), [[business-analysis]] (requirements)
 - **moc**: [[product-development-moc]]
 
 ## Core Philosophy
@@ -31,12 +35,34 @@ Deliver value through efficient systems and clear processes.
 3. **Ruthless Prioritization** — "No" protects focus
 4. **Automated Governance** — Automate rules, don't just follow them
 
+## Decision Tree
+
+```
+What PM activity is needed?
+│
+├─ Discovery / Research?
+│  └─ Read: discovery_process.md (6-phase workflow)
+│
+├─ PRD / Requirements?
+│  └─ Read: prd_development.md (10-section template)
+│
+├─ Understanding customer needs?
+│  └─ Read: jobs_to_be_done.md (JTBD framework)
+│
+├─ Strategic planning?
+│  └─ Use: strategic-frameworks (Roadmap, OKRs)
+│
+└─ Process / Governance?
+   └─ Use: rules-guide, workflows-guide
+```
+
 ## Capabilities
 
 | Capability | Keywords | Router |
 |:-----------|:---------|:-------|
 | **Strategic Planning** | Roadmap, Vision, OKRs | `strategic-frameworks` |
 | **Requirements** | PRD, Specs, User Stories | `prd-template`, `user-story-template` |
+| **Discovery** | Research, Interviews, JTBD | `discovery_process`, `jobs_to_be_done` |
 | **Process** | Rules, Workflows | `rules-guide`, `workflows-guide` |
 | **Decomposition** | Breakdown, Estimation | `task-decomposition` |
 | **Skill Management** | Create/Update skills | `skill-questionnaire` |
@@ -62,11 +88,16 @@ Deliver value through efficient systems and clear processes.
 
 ## References
 
-- `router.json` — Find templates by keyword
-- `templates/adr.md` — Architecture Decision Record
-- `templates/rfc.md` — Request for Comments
-- `templates/prd-template.md` — Product Requirements
-- `templates/user-story-template.md` — User stories
+| Reference | Purpose |
+|:----------|:--------|
+| `router.json` | Find templates by keyword |
+| `templates/adr.md` | Architecture Decision Record |
+| `templates/rfc.md` | Request for Comments |
+| `templates/prd-template.md` | Product Requirements |
+| `templates/user-story-template.md` | User stories |
+| `discovery_process.md` | Product discovery 6-phase workflow (Dean Peters) |
+| `prd_development.md` | Structured PRD creation guide (Dean Peters) |
+| `jobs_to_be_done.md` | JTBD framework (Dean Peters) |
 
 ## Related Skills
 
@@ -76,4 +107,4 @@ Deliver value through efficient systems and clear processes.
 
 ---
 
-*Orchestrates all other skills | Hub for project governance*
+*Orchestrates all other skills | Hub for project governance | Dean Peters frameworks integrated*
