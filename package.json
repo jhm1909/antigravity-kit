@@ -1,0 +1,48 @@
+{
+  "name": "@jhm1909/ag-kit",
+  "version": "0.1.0",
+  "description": "AI Agent Kit — Skills, Workflows, Knowledge Graph routing for AI-powered coding",
+  "main": "cli/index.js",
+  "bin": {
+    "ag-kit": "cli/index.js"
+  },
+  "files": [
+    "cli/",
+    ".agent/skills/",
+    ".agent/workflows/",
+    ".agent/rules/",
+    ".agent/mocs/",
+    ".agent/graph-index.json",
+    ".agent/skills-manifest.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node cli/index.js --help"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "skills",
+    "workflows",
+    "coding-assistant",
+    "claude",
+    "cursor",
+    "gemini",
+    "copilot",
+    "agentskills"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhm1909/antigravity-kit.git"
+  },
+  "homepage": "https://github.com/jhm1909/antigravity-kit#readme",
+  "bugs": {
+    "url": "https://github.com/jhm1909/antigravity-kit/issues"
+  },
+  "author": "jhm1909",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

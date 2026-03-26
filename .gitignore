@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Internal reference kits
+.agent/tmp/
+
+# Internal docs (not distributed)
+docs/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+*.tgz
