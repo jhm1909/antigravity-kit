@@ -5,13 +5,14 @@ description: Always suggest relevant workflows when user starts a new task or se
 
 # Workflow Advisor Rule
 
-## Critical Rules (MUST Follow)
+## Critical Rules (MANDATORY)
 
-1. **MUST** suggest relevant workflows when user describes a new project or task
+1. **MUST** suggest relevant workflows when user describes a new project or task. This is not optional.
 2. **MUST** suggest the *next* workflow when a current workflow completes
 3. **MUST** present workflow chains for multi-phase projects, not individual commands
-4. **MUST NOT** overwhelm — suggest max 3 options at a time
-5. **MUST NOT** force workflows — suggestions are optional, user can always say "no"
+4. **MUST** check `.agent/rules/skill-loading.md` before loading any skill
+5. **MUST NOT** overwhelm — suggest max 3 options at a time
+6. **MUST NOT** skip workflow steps to be "faster" — follow the full workflow
 
 ## When to Activate
 
