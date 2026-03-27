@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ─── Constants ───────────────────────────────────────────────────────
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const KIT_NAME = '@jhm1909/ag-kit';
 const AGENT_DIR = '.agent';
 
@@ -67,8 +67,8 @@ function copyDir(src, dest, allowedDirs = null, depth = 0) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
 
-    // Skip tmp/ directory always
-    if (entry.name === 'tmp') continue;
+    // Skip tmp/ and templates/ directories always
+    if (entry.name === 'tmp' || entry.name === 'templates') continue;
 
     // At skills level (depth 1, parent is "skills"), filter by allowed dirs
     if (depth === 1 && allowedDirs && entry.isDirectory()) {
@@ -181,6 +181,14 @@ function cmdInit(args) {
   log(`  ${c.cyan}|${c.reset} Workflows   ${c.dim}Chainable task automations${c.reset}`);
   log(`  ${c.cyan}|${c.reset} Rules       ${c.dim}Coding standards & guardrails${c.reset}`);
   log(`  ${c.cyan}|${c.reset} Manifest    ${c.dim}Skill routing & profiles${c.reset}`);
+  // Copy AGENTS.md to project root for cross-platform discovery
+  const agentsMdSrc = path.join(SOURCE_AGENT_DIR, 'templates', 'AGENTS.md');
+  const agentsMdDest = path.join(targetDir, 'AGENTS.md');
+  if (fs.existsSync(agentsMdSrc) && (!fs.existsSync(agentsMdDest) || force)) {
+    fs.copyFileSync(agentsMdSrc, agentsMdDest);
+    success('Created AGENTS.md (cross-platform agent config)');
+  }
+
   log();
   log(`${c.dim}  Works with: Claude Code, Cursor, Gemini CLI, GitHub Copilot${c.reset}`);
   log();

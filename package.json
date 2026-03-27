@@ -1,6 +1,6 @@
 {
   "name": "@jhm1909/ag-kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AI Agent Kit — 21 skills, 15 workflows, manifest-driven routing for AI-powered coding",
   "main": "cli/index.js",
   "bin": {
@@ -15,6 +15,7 @@
     ".agent/ARCHITECTURE.md",
     ".agent/known-registries.json",
     ".agent/mcp_config.json",
+    ".agent/templates/",
     "README.md",
     "LICENSE"
   ],
