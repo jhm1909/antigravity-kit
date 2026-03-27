@@ -113,6 +113,15 @@
       "triggers": ["prompt engineering", "system prompt", "few-shot", "chain-of-thought", "prompt template"],
       "used_by_workflows": []
     },
+    "mcp-builder": {
+      "name": "MCP Builder",
+      "description": "Production-grade MCP server development (TypeScript/Python). Architecture, tool design, security, evaluation.",
+      "size": "92K",
+      "dependencies": [],
+      "triggers": ["MCP", "model context protocol", "MCP server", "FastMCP", "tool server", "MCP SDK"],
+      "used_by_workflows": ["implement-feature"],
+      "source": "anthropics/skills (Apache 2.0)"
+    },
     "remotion-best-practices": {
       "name": "Remotion Best Practices",
       "description": "Video creation with Remotion framework",

@@ -8,7 +8,7 @@ license: MIT
 compatibility: Claude Code, Cursor, Gemini CLI, GitHub Copilot
 metadata:
   author: jhm1909
-  version: "3.0.0"
+  version: "4.0.0"
   domain: design
   estimated_tokens: 15000
 ---
@@ -105,9 +105,10 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 - **Why this font?** — Readability, personality, performance
 - **Why this animation?** — User feedback, spatial understanding
 
-### Distinctive Over Generic
+### Distinctive Over Generic (Anti-AI-Slop)
 - ❌ Default gradients, Inter everywhere, card templates
 - ✅ Committed aesthetic, unique typography, contextual layouts
+- 📖 Load [Frontend Design Aesthetics](./references/frontend_design_aesthetics.md) for Anthropic's anti-AI-slop guide
 
 ### Technical Excellence
 - Semantic HTML first
@@ -155,4 +156,4 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 
 ---
 
-*Design intelligence v3.0 | Searchable database + methodology | Works with [[frontend-developer]]*
+*Design intelligence v4.0 | Searchable database + Anthropic aesthetics | Source: [Anthropic frontend-design](https://github.com/anthropics/skills)*
