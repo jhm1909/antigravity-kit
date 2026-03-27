@@ -43,11 +43,15 @@ Most AI coding assistants have **zero memory** between sessions. They forget you
 ## Quick Start
 
 ```bash
-# Install everything
+# npm
 npx @jhm1909/ag-kit init
 
-# Or pick a profile
+# pnpm
+pnpm dlx @jhm1909/ag-kit init
+
+# With a profile
 npx @jhm1909/ag-kit init --profile fullstack-saas
+pnpm dlx @jhm1909/ag-kit init --profile fullstack-saas
 ```
 
 That's it. Your `.agent/` directory is now populated with skills, workflows, and rules.
@@ -153,6 +157,8 @@ Install only what you need:
 
 ```bash
 npx @jhm1909/ag-kit init --profile <name>
+# or
+pnpm dlx @jhm1909/ag-kit init --profile <name>
 ```
 
 | Profile | Included Skills | Optional |
