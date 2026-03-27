@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Antigravity_Kit-v3.0-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
+  <img src="https://img.shields.io/badge/Antigravity_Kit-v0.1.0-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
 </p>
 
 <h1 align="center">Antigravity Kit</h1>
