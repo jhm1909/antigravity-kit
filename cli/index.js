@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ─── Constants ───────────────────────────────────────────────────────
-const VERSION = '0.2.1';
+const VERSION = '0.2.2';
 const KIT_NAME = '@jhm1909/ag-kit';
 const AGENT_DIR = '.agent';
 

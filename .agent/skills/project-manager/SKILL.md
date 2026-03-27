@@ -30,30 +30,25 @@ Deliver value through efficient systems and clear processes.
 
 ## Core Philosophy
 
-1. **Outcome & Efficiency** â€” Value (Product) through efficient systems (Process)
-2. **Voice of User & Team** â€” Represent user in requirements, team in process
-3. **Ruthless Prioritization** â€” "No" protects focus
-4. **Automated Governance** â€” Automate rules, don't just follow them
+1. **Outcome & Efficiency** ??Value (Product) through efficient systems (Process)
+2. **Voice of User & Team** ??Represent user in requirements, team in process
+3. **Ruthless Prioritization** ??"No" protects focus
+4. **Automated Governance** ??Automate rules, don't just follow them
 
 ## Decision Tree
 
 ```
 What PM activity is needed?
-â”‚
-â”œâ”€ Discovery / Research?
-â”‚  â””â”€ Read: discovery_process.md (6-phase workflow)
-â”‚
-â”œâ”€ PRD / Requirements?
-â”‚  â””â”€ Read: prd_development.md (10-section template)
-â”‚
-â”œâ”€ Understanding customer needs?
-â”‚  â””â”€ Read: jobs_to_be_done.md (JTBD framework)
-â”‚
-â”œâ”€ Strategic planning?
-â”‚  â””â”€ Use: strategic-frameworks (Roadmap, OKRs)
-â”‚
-â””â”€ Process / Governance?
-   â””â”€ Use: rules-guide, workflows-guide
+???œâ? Discovery / Research?
+?? ?”â? Read: discovery-process.md (6-phase workflow)
+???œâ? PRD / Requirements?
+?? ?”â? Read: prd-development.md (10-section template)
+???œâ? Understanding customer needs?
+?? ?”â? Read: jobs-to-be-done.md (JTBD framework)
+???œâ? Strategic planning?
+?? ?”â? Use: strategic-frameworks (Roadmap, OKRs)
+???”â? Process / Governance?
+   ?”â? Use: rules-guide, workflows-guide
 ```
 
 ## Capabilities
@@ -69,9 +64,9 @@ What PM activity is needed?
 
 ## Quick Rules
 
-- **Repeated 3x?** â†’ Make a **Workflow** (`.agent/workflows/`)
-- **Mistake 2x?** â†’ Make a **Rule** (`.agent/rules/`)
-- **Domain-specific?** â†’ Consult **[[business-analysis]]**
+- **Repeated 3x?** ??Make a **Workflow** (`.agent/workflows/`)
+- **Mistake 2x?** ??Make a **Rule** (`.agent/rules/`)
+- **Domain-specific?** ??Consult **[[business-analysis]]**
 
 ## Skill Detection Matrix
 
@@ -95,15 +90,15 @@ What PM activity is needed?
 | `templates/rfc.md` | Request for Comments |
 | `templates/prd-template.md` | Product Requirements |
 | `templates/user-story-template.md` | User stories |
-| `discovery_process.md` | Product discovery 6-phase workflow (Dean Peters) |
-| `prd_development.md` | Structured PRD creation guide (Dean Peters) |
-| `jobs_to_be_done.md` | JTBD framework (Dean Peters) |
+| `discovery-process.md` | Product discovery 6-phase workflow (Dean Peters) |
+| `prd-development.md` | Structured PRD creation guide (Dean Peters) |
+| `jobs-to-be-done.md` | JTBD framework (Dean Peters) |
 
 ## Related Skills
 
-- [[business-analysis]] â€” Deep requirements analysis
-- [[qa-tester]] â€” Quality and testing
-- [[lead-architect]] â€” High-level technical decisions
+- [[business-analysis]] ??Deep requirements analysis
+- [[qa-tester]] ??Quality and testing
+- [[lead-architect]] ??High-level technical decisions
 
 ---
 

@@ -16,9 +16,9 @@ Guide proper code review practices: technical rigor, evidence-based claims, secu
 
 ## Three Practices
 
-1. **Receiving feedback** — Technical evaluation over performative agreement
-2. **Requesting reviews** — Systematic review process
-3. **Verification gates** — Evidence before any completion claims
+1. **Receiving feedback** ??Technical evaluation over performative agreement
+2. **Requesting reviews** ??Systematic review process
+3. **Verification gates** ??Evidence before any completion claims
 
 ## Core Principle
 
@@ -28,36 +28,31 @@ Guide proper code review practices: technical rigor, evidence-based claims, secu
 
 ```
 SITUATION?
-│
-├─ Received feedback
-│  ├─ Unclear items? → STOP, ask for clarification first
-│  ├─ From human partner? → Understand, then implement
-│  └─ From external reviewer? → Verify technically before implementing
-│
-├─ Security-focused PR review?
-│  └─ Read: differential_review.md (blast radius, risk classification)
-│
-├─ Spec-to-code compliance check?
-│  └─ Read: spec_compliance.md (6-phase audit methodology)
-│
-├─ Completed work
-│  └─ Major feature/task? → Run verification, present evidence
-│
-└─ About to claim status
-   ├─ Have fresh verification? → State claim WITH evidence
-   └─ No fresh verification? → RUN verification command first
+???��? Received feedback
+?? ?��? Unclear items? ??STOP, ask for clarification first
+?? ?��? From human partner? ??Understand, then implement
+?? ?��? From external reviewer? ??Verify technically before implementing
+???��? Security-focused PR review?
+?? ?��? Read: differential-review.md (blast radius, risk classification)
+???��? Spec-to-code compliance check?
+?? ?��? Read: spec-compliance.md (6-phase audit methodology)
+???��? Completed work
+?? ?��? Major feature/task? ??Run verification, present evidence
+???��? About to claim status
+   ?��? Have fresh verification? ??State claim WITH evidence
+   ?��? No fresh verification? ??RUN verification command first
 ```
 
 ## Receiving Feedback Protocol
 
-**Pattern**: READ → UNDERSTAND → VERIFY → EVALUATE → RESPOND → IMPLEMENT
+**Pattern**: READ ??UNDERSTAND ??VERIFY ??EVALUATE ??RESPOND ??IMPLEMENT
 
 **Key Rules**:
-- ❌ No performative agreement: "You're absolutely right!", "Great point!"
-- ❌ No implementation before verification
-- ✅ Restate requirement, ask questions, push back with technical reasoning
-- ✅ If unclear: STOP and ask for clarification on ALL unclear items first
-- ✅ YAGNI check: grep for usage before implementing suggested features
+- ??No performative agreement: "You're absolutely right!", "Great point!"
+- ??No implementation before verification
+- ??Restate requirement, ask questions, push back with technical reasoning
+- ??If unclear: STOP and ask for clarification on ALL unclear items first
+- ??YAGNI check: grep for usage before implementing suggested features
 
 **Full protocol**: [code-review-reception.md](./references/code-review-reception.md)
 
@@ -72,14 +67,14 @@ SITUATION?
 | Bug fixed | Original symptom passes | "Code changed" |
 | Requirements met | Line-by-line checklist | "Tests passing" |
 
-**Red Flags — STOP**:
+**Red Flags ??STOP**:
 - Using "should", "probably", "seems to"
 - Expressing satisfaction before verification
 - Committing without verification
 
 **Full protocol**: [verification-before-completion.md](./references/verification-before-completion.md)
 
-## Security Review — Risk Classification
+## Security Review ??Risk Classification
 
 | Risk Level | Triggers |
 |------------|----------|
@@ -93,7 +88,7 @@ SITUATION?
 - Validation removed without replacement
 - High blast radius (50+ callers) + HIGH risk change
 
-**Full methodology**: [differential_review.md](./references/differential_review.md)
+**Full methodology**: [differential-review.md](./references/differential-review.md)
 
 ## References
 
@@ -102,12 +97,12 @@ SITUATION?
 | `code-review-reception.md` | Receiving feedback protocol |
 | `verification-before-completion.md` | Iron Law verification gates |
 | `requesting-code-review.md` | How to request reviews |
-| `differential_review.md` | Security PR review (Trail of Bits) |
-| `spec_compliance.md` | Spec-to-code audit (Trail of Bits) |
+| `differential-review.md` | Security PR review (Trail of Bits) |
+| `spec-compliance.md` | Spec-to-code audit (Trail of Bits) |
 
 ## Bottom Line
 
-1. Technical rigor over social performance — No performative agreement
-2. Evidence before claims — Verification gates always
-3. Security before speed — Risk-classify every PR change
+1. Technical rigor over social performance ??No performative agreement
+2. Evidence before claims ??Verification gates always
+3. Security before speed ??Risk-classify every PR change
 4. Verify. Question. Then implement. Evidence. Then claim.

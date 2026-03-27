@@ -109,8 +109,8 @@ User: "Add a 3D model viewer to my React app"
 
 | Reference | Purpose |
 |:----------|:--------|
-| `react_performance_rules.md` | 65 Vercel React/Next.js perf rules (8 categories) |
-| `composition_patterns.md` | React composition patterns (Vercel) |
+| `react-performance-rules.md` | 65 Vercel React/Next.js perf rules (8 categories) |
+| `composition-patterns.md` | React composition patterns (Vercel) |
 
 ## Related Skills
 

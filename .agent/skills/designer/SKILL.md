@@ -13,7 +13,7 @@ metadata:
   estimated_tokens: 15000
 ---
 
-# Designer — Design Intelligence
+# Designer ??Design Intelligence
 
 Expert design guidance powered by a **searchable design database** with BM25 ranking.
 
@@ -73,10 +73,10 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 ### Workflow
 
 ```
-1. ANALYZE requirements → product type, audience, style keywords
-2. SEARCH --design-system → get full recommendation
-3. DEEP-DIVE --domain → supplement specific needs
-4. IMPLEMENT → using verified, data-driven choices
+1. ANALYZE requirements ??product type, audience, style keywords
+2. SEARCH --design-system ??get full recommendation
+3. DEEP-DIVE --domain ??supplement specific needs
+4. IMPLEMENT ??using verified, data-driven choices
 ```
 
 ---
@@ -93,7 +93,7 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 | 6 | Typography & Color | MEDIUM | Base 16px, line-height 1.5, semantic tokens |
 | 7 | Animation | MEDIUM | 150-300ms, transform/opacity only, reduced-motion |
 | 8 | Forms & Feedback | MEDIUM | Visible labels, error near field, progressive disclosure |
-| 9 | Navigation | HIGH | Bottom nav ≤5, predictable back, deep linking |
+| 9 | Navigation | HIGH | Bottom nav ??, predictable back, deep linking |
 | 10 | Charts & Data | LOW | Legends, tooltips, accessible colors |
 
 ---
@@ -101,14 +101,14 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 ## Core Principles
 
 ### Intentionality Over Trends
-- **Why this color?** — Brand meaning, accessibility, contrast
-- **Why this font?** — Readability, personality, performance
-- **Why this animation?** — User feedback, spatial understanding
+- **Why this color?** ??Brand meaning, accessibility, contrast
+- **Why this font?** ??Readability, personality, performance
+- **Why this animation?** ??User feedback, spatial understanding
 
 ### Distinctive Over Generic (Anti-AI-Slop)
-- ❌ Default gradients, Inter everywhere, card templates
-- ✅ Committed aesthetic, unique typography, contextual layouts
-- 📖 Load [Frontend Design Aesthetics](./references/frontend_design_aesthetics.md) for Anthropic's anti-AI-slop guide
+- ??Default gradients, Inter everywhere, card templates
+- ??Committed aesthetic, unique typography, contextual layouts
+- ?�� Load [Frontend Design Aesthetics](./references/frontend-design-aesthetics.md) for Anthropic's anti-AI-slop guide
 
 ### Technical Excellence
 - Semantic HTML first
@@ -127,12 +127,12 @@ python3 skills/designer/scripts/ui-search/search.py "<keyword>" --domain <domain
 
 ### Interaction
 - [ ] All tappable elements have press feedback
-- [ ] Touch targets ≥44×44pt
+- [ ] Touch targets ??4×44pt
 - [ ] Micro-interactions 150-300ms
 - [ ] Disabled states visually clear
 
 ### Light/Dark Mode
-- [ ] Primary text contrast ≥4.5:1 in both modes
+- [ ] Primary text contrast ??.5:1 in both modes
 - [ ] Dividers/borders visible in both modes
 - [ ] Both themes tested before delivery
 
