@@ -177,11 +177,10 @@ function cmdInit(args) {
   log(`${c.dim}  Installed to: ${targetAgentDir}${c.reset}`);
   log();
   log(`${c.bold}  What's included:${c.reset}`);
-  log(`  ${c.cyan}→${c.reset} Skills      ${c.dim}Reusable AI skill definitions${c.reset}`);
-  log(`  ${c.cyan}→${c.reset} Workflows   ${c.dim}Automated task flows${c.reset}`);
-  log(`  ${c.cyan}→${c.reset} Rules       ${c.dim}Coding standards & guidelines${c.reset}`);
-  log(`  ${c.cyan}→${c.reset} MOCs        ${c.dim}Maps of Content for navigation${c.reset}`);
-  log(`  ${c.cyan}→${c.reset} Graph       ${c.dim}Knowledge graph for smart routing${c.reset}`);
+  log(`  ${c.cyan}|${c.reset} Skills      ${c.dim}Expert AI skill definitions${c.reset}`);
+  log(`  ${c.cyan}|${c.reset} Workflows   ${c.dim}Chainable task automations${c.reset}`);
+  log(`  ${c.cyan}|${c.reset} Rules       ${c.dim}Coding standards & guardrails${c.reset}`);
+  log(`  ${c.cyan}|${c.reset} Manifest    ${c.dim}Skill routing & profiles${c.reset}`);
   log();
   log(`${c.dim}  Works with: Claude Code, Cursor, Gemini CLI, GitHub Copilot${c.reset}`);
   log();
@@ -246,7 +245,6 @@ function cmdStatus() {
     ? fs.readdirSync(rulesDir).filter(f => f.endsWith('.md')).length 
     : 0;
 
-  const hasGraph = fs.existsSync(path.join(targetAgentDir, 'graph-index.json'));
   const hasManifest = fs.existsSync(manifestPath);
 
   log(`${c.bold}Agent Kit Status${c.reset}`);
@@ -256,8 +254,7 @@ function cmdStatus() {
   log(`  ${c.cyan}Skills:${c.reset}     ${skillCount}`);
   log(`  ${c.cyan}Workflows:${c.reset}  ${workflowCount}`);
   log(`  ${c.cyan}Rules:${c.reset}      ${ruleCount}`);
-  log(`  ${c.cyan}Graph:${c.reset}      ${hasGraph ? `${c.green}✓${c.reset}` : `${c.red}✗${c.reset}`}`);
-  log(`  ${c.cyan}Manifest:${c.reset}   ${hasManifest ? `${c.green}✓${c.reset}` : `${c.red}✗${c.reset}`}`);
+  log(`  ${c.cyan}Manifest:${c.reset}   ${hasManifest ? 'yes' : 'no'}`);
   log();
 }
 
