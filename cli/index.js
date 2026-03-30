@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ─── Constants ───────────────────────────────────────────────────────
-const VERSION = '0.3.1';
+const VERSION = '0.3.2';
 const KIT_NAME = '@jhm1909/ag-kit';
 const AGENT_DIR = '.agent';
 
@@ -149,6 +149,47 @@ function copyFile(src, dest) {
   }
   fs.copyFileSync(src, dest);
 }
+
+/**
+ * Collect hashes of all files in a directory (for tracking)
+ */
+function collectHashes(dir, prefix = '') {
+  const hashes = {};
+  if (!fs.existsSync(dir)) return hashes;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === 'tmp' || entry.name === 'templates' || entry.name === '.kit-hashes.json') continue;
+    const fullPath = path.join(dir, entry.name);
+    const relPath = prefix ? `${prefix}/${entry.name}` : entry.name;
+
+    if (entry.isDirectory()) {
+      Object.assign(hashes, collectHashes(fullPath, relPath));
+    } else {
+      hashes[relPath] = fileHash(fullPath);
+    }
+  }
+  return hashes;
+}
+
+/**
+ * Save hashes to .kit-hashes.json in the target .agent/ dir
+ */
+function saveHashes(targetAgentDir, hashes) {
+  const hashFile = path.join(targetAgentDir, '.kit-hashes.json');
+  fs.writeFileSync(hashFile, JSON.stringify({ version: VERSION, hashes }, null, 2));
+}
+
+/**
+ * Load saved hashes from .kit-hashes.json
+ */
+function loadHashes(targetAgentDir) {
+  const hashFile = path.join(targetAgentDir, '.kit-hashes.json');
+  if (!fs.existsSync(hashFile)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(hashFile, 'utf-8'));
+  } catch (e) { return null; }
+}
 /**
  * Load skills-manifest.json from package
  */
@@ -232,6 +273,10 @@ function cmdInit(args) {
 
   // Copy .agent/ directory
   const fileCount = copyDir(SOURCE_AGENT_DIR, targetAgentDir, allowedSkills);
+
+  // Save hashes for future updates
+  const hashes = collectHashes(targetAgentDir);
+  saveHashes(targetAgentDir, hashes);
 
   log();
   success(`${c.bold}Agent kit installed!${c.reset} (${fileCount} files)`);
@@ -366,67 +411,100 @@ function cmdUpdate(args) {
   info(`Available version: ${c.bold}${VERSION}${c.reset}`);
   log();
 
-  // Diff files
-  const diff = diffDir(SOURCE_AGENT_DIR, targetAgentDir);
+  // Diff using 3-way comparison
+  const savedData = loadHashes(targetAgentDir);
+  const sourceHashes = collectHashes(SOURCE_AGENT_DIR);
+  const installedHashes = collectHashes(targetAgentDir);
+  const savedHashes = savedData ? savedData.hashes : {};
 
-  if (diff.added.length === 0 && diff.updated.length === 0) {
+  const added = [];       // New files not in installed
+  const safeUpdate = [];  // Changed upstream, user hasn't modified
+  const conflict = [];    // Changed upstream AND user modified
+  const unchanged = [];   // Same everywhere
+
+  for (const [file, srcHash] of Object.entries(sourceHashes)) {
+    const instHash = installedHashes[file];
+    const origHash = savedHashes[file];
+
+    if (instHash === undefined) {
+      // File doesn't exist in installed → new file
+      added.push(file);
+    } else if (srcHash === instHash) {
+      // Source and installed are the same → no change needed
+      unchanged.push(file);
+    } else if (origHash !== undefined && instHash === origHash) {
+      // User hasn't modified (installed == original), but upstream changed → safe to update
+      safeUpdate.push(file);
+    } else {
+      // User modified AND upstream changed → conflict
+      conflict.push(file);
+    }
+  }
+
+  if (added.length === 0 && safeUpdate.length === 0 && conflict.length === 0) {
     success('Already up to date! No changes needed.');
     log();
     return;
   }
 
   // Show what will change
-  if (diff.added.length > 0) {
-    log(`${c.bold}${c.green}  New files (${diff.added.length}):${c.reset}`);
-    for (const f of diff.added) {
-      log(`    ${c.green}+${c.reset} ${f}`);
-    }
+  if (added.length > 0) {
+    log(`${c.bold}${c.green}  New files (${added.length}):${c.reset}`);
+    for (const f of added) log(`    ${c.green}+${c.reset} ${f}`);
     log();
   }
 
-  if (diff.updated.length > 0) {
-    log(`${c.bold}${c.yellow}  Changed files (${diff.updated.length}):${c.reset}`);
-    for (const f of diff.updated) {
-      log(`    ${c.yellow}~${c.reset} ${f}`);
-    }
+  if (safeUpdate.length > 0) {
+    log(`${c.bold}${c.cyan}  Upstream updates (${safeUpdate.length}):${c.reset}`);
+    for (const f of safeUpdate) log(`    ${c.cyan}↑${c.reset} ${f}`);
     log();
   }
 
-  if (!force) {
-    // Non-force mode: only copy new files, skip changed
-    info('Non-force mode: adding new files only, skipping changed files.');
-    info(`Use ${c.bold}ag-kit update --force${c.reset} to also overwrite changed files.`);
+  if (conflict.length > 0) {
+    log(`${c.bold}${c.yellow}  Conflicts — you modified, upstream also changed (${conflict.length}):${c.reset}`);
+    for (const f of conflict) log(`    ${c.yellow}⚠${c.reset} ${f}`);
     log();
-
-    let copied = 0;
-    for (const f of diff.added) {
-      const srcPath = path.join(SOURCE_AGENT_DIR, f);
-      const destPath = path.join(targetAgentDir, f);
-      copyFile(srcPath, destPath);
-      copied++;
-    }
-
-    if (copied > 0) {
-      success(`Added ${c.bold}${copied}${c.reset} new files.`);
-    }
-    if (diff.updated.length > 0) {
-      warn(`Skipped ${diff.updated.length} changed files (use --force to overwrite).`);
-    }
-  } else {
-    // Force mode: copy both new and changed files
-    let copied = 0;
-    for (const f of [...diff.added, ...diff.updated]) {
-      const srcPath = path.join(SOURCE_AGENT_DIR, f);
-      const destPath = path.join(targetAgentDir, f);
-      copyFile(srcPath, destPath);
-      copied++;
-    }
-
-    success(`Updated ${c.bold}${copied}${c.reset} files (${diff.added.length} new, ${diff.updated.length} changed).`);
   }
+
+  // Apply updates
+  let copied = 0;
+
+  // Always copy new files and safe updates
+  for (const f of [...added, ...safeUpdate]) {
+    const srcPath = path.join(SOURCE_AGENT_DIR, f);
+    const destPath = path.join(targetAgentDir, f);
+    copyFile(srcPath, destPath);
+    copied++;
+  }
+
+  // Handle conflicts
+  if (conflict.length > 0) {
+    if (force) {
+      for (const f of conflict) {
+        const srcPath = path.join(SOURCE_AGENT_DIR, f);
+        const destPath = path.join(targetAgentDir, f);
+        // Backup before overwrite
+        const backupPath = destPath + '.backup';
+        fs.copyFileSync(destPath, backupPath);
+        copyFile(srcPath, destPath);
+        copied++;
+      }
+      warn(`Overwrote ${conflict.length} conflicted files (backups saved as .backup)`);
+    } else {
+      warn(`Skipped ${conflict.length} conflicted files (use --force to overwrite with backups).`);
+    }
+  }
+
+  if (copied > 0) {
+    success(`Updated ${c.bold}${copied}${c.reset} files (${added.length} new, ${safeUpdate.length} upstream, ${force ? conflict.length + ' conflicts overwritten' : '0 conflicts'}).`);
+  }
+
+  // Save new hashes
+  const newHashes = collectHashes(targetAgentDir);
+  saveHashes(targetAgentDir, newHashes);
 
   log();
-  log(`${c.dim}  ${diff.unchanged.length} files unchanged${c.reset}`);
+  log(`${c.dim}  ${unchanged.length} files unchanged${c.reset}`);
   log();
 }
 
