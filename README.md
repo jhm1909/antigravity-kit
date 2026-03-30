@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Antigravity_Kit-v0.2.0-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
+  <img src="https://img.shields.io/badge/Antigravity_Kit-v0.2.3-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
 </p>
 
 <h1 align="center">Antigravity Kit</h1>
 
 <p align="center">
   <strong>Modular AI Agent Capability Kit</strong><br/>
-  <em>21 skills · 15 workflows · 10 rules — plug into any AI coding assistant</em>
+  <em>21 skills · 15 workflows · 12 rules — plug into any AI coding assistant</em>
 </p>
 
 <p align="center">
@@ -203,7 +203,7 @@ USER -> /guide (Discovery)
 │   │   └── references/        <- Anti-AI-slop aesthetics guide
 │   └── ...
 ├── workflows/                 <- 15 chainable workflows
-├── rules/                     <- 10 always-on rules
+├── rules/                     <- 12 always-on rules
 └── known-registries.json      <- External skill sources
 ```
 
@@ -219,6 +219,7 @@ This kit integrates production-grade methodologies from industry leaders:
 | [Vercel](https://vercel.com/) | — | `frontend-developer` v4 (65 React performance patterns, composition rules) |
 | [Dean Peters](https://deanpeters.net/) | — | `project-manager` v5 (discovery process, PRD framework, Jobs-to-be-Done) |
 | [Anthropic](https://github.com/anthropics/skills) | Apache 2.0 | `mcp-builder` (MCP server guide + eval), `designer` v4 (anti-AI-slop aesthetics) |
+| [Superpowers](https://github.com/jessed/superpowers) | MIT | `debugging` (rationalization prevention, defense-in-depth), `code-review` (anti-performative review), `qa-tester` (TDD discipline), `/brainstorm` (HARD-GATE) |
 
 ---
 
@@ -253,8 +254,8 @@ ag-kit help                       # Show all commands
 ## Stats
 
 ```
-21 skills · 15 workflows · 10 rules · 6 profiles
-4 absorbed sources · 2,600K+ knowledge base
+21 skills · 15 workflows · 12 rules · 6 profiles
+5 absorbed sources · 2,600K+ knowledge base
 ```
 
 ---
