@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-30
+
+### Added
+
+- **New Skill**: `self-improvement` — Feedback descent algorithm (arxiv:2511.07919), evolutionary skill discovery, automated capability gap analysis
+  - `references/feedback-descent.md` — Full algorithm implementation with usage examples
+- **New Rules**:
+  - `critical-thinker.md` — AI proactively challenges bad ideas, flags issues, gives clear opinions
+  - `self-improve-loop.md` — Auto-detect repeated failures and propose skill/prompt improvements
+
+### Enhanced
+
+- **`prompt-engineer`**: Added `references/prompt-optimization.md` — Abstraction ladder technique, generalization rules, quality checklist
+- **`ai-engineer`**: Added `references/skill-evolution.md` — CREATE vs EDIT decision matrix, task registry pattern
+- **`code-review`**: Added `references/root-cause-analysis.md` — Structured failure analysis (Trace → Gap → Root Cause)
+- **`skills-manifest.json`**: Added `self-improvement` entry, updated `prompt-engineer` triggers and size
+
+### Absorbed
+
+- **[EvoSkill](https://github.com/sentient-agi/EvoSkill)** (Apache 2.0) — Self-improving agent framework by Sentient AGI
+
+### Stats
+
+```
+22 skills · 15 workflows · 14 rules · 6 profiles
+6 absorbed sources · 2,800K+ knowledge base
+```
+
 ## [0.2.0] - 2026-03-26
 
 ### Added
@@ -69,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-platform compatibility: Claude Code, Cursor, Gemini CLI, GitHub Copilot
 - agentskills.io specification compliance
 
-[Unreleased]: https://github.com/jhm1909/antigravity-kit/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/jhm1909/antigravity-kit/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/jhm1909/antigravity-kit/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jhm1909/antigravity-kit/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jhm1909/antigravity-kit/releases/tag/v0.1.0

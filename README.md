@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Antigravity_Kit-v0.2.3-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
+  <img src="https://img.shields.io/badge/Antigravity_Kit-v0.3.0-8B5CF6?style=for-the-badge&labelColor=1a1a2e" alt="Antigravity Kit" />
 </p>
 
 <h1 align="center">Antigravity Kit</h1>
 
 <p align="center">
   <strong>Modular AI Agent Capability Kit</strong><br/>
-  <em>21 skills · 15 workflows · 12 rules — plug into any AI coding assistant</em>
+  <em>22 skills · 15 workflows · 14 rules — plug into any AI coding assistant</em>
 </p>
 
 <p align="center">
@@ -60,7 +60,7 @@ That's it. Your `.agent/` directory is now populated with skills, workflows, and
 
 ## Skills
 
-21 production-grade skills across 8 domains. Each skill includes expert knowledge, reference materials, and executable patterns.
+22 production-grade skills across 8 domains. Each skill includes expert knowledge, reference materials, and executable patterns.
 
 ### Core Engineering
 
@@ -95,7 +95,8 @@ That's it. Your `.agent/` directory is now populated with skills, workflows, and
 |-------|------|--------------|
 | **ai-engineer** | 24K | GenAI, RAG, agentic systems, evaluation pipelines |
 | **mcp-builder** | 92K | MCP server development (TS/Python). *Anthropic official guide + eval framework* |
-| **prompt-engineer** | 12K | System prompts, few-shot, chain-of-thought |
+| **prompt-engineer** | 20K | System prompts, few-shot, chain-of-thought, prompt optimization |
+| **self-improvement** | 16K | Feedback descent, evolutionary skill discovery, capability gap analysis. *EvoSkill methodology* |
 | **context-engineering** | 36K | Token optimization, progressive disclosure, multi-agent coordination |
 
 ### Planning & Management
@@ -188,7 +189,7 @@ USER -> /guide (Discovery)
 .agent/
 ├── skills-manifest.json      <- Single source of truth
 ├── ARCHITECTURE.md            <- Detailed architecture docs
-├── skills/                    <- 21 expert skills
+├── skills/                    <- 22 expert skills
 │   ├── frontend-developer/
 │   │   ├── SKILL.md
 │   │   ├── react-nextjs/      <- Sub-skill
@@ -203,7 +204,7 @@ USER -> /guide (Discovery)
 │   │   └── references/        <- Anti-AI-slop aesthetics guide
 │   └── ...
 ├── workflows/                 <- 15 chainable workflows
-├── rules/                     <- 12 always-on rules
+├── rules/                     <- 14 always-on rules
 └── known-registries.json      <- External skill sources
 ```
 
@@ -220,6 +221,7 @@ This kit integrates production-grade methodologies from industry leaders:
 | [Dean Peters](https://deanpeters.net/) | — | `project-manager` v5 (discovery process, PRD framework, Jobs-to-be-Done) |
 | [Anthropic](https://github.com/anthropics/skills) | Apache 2.0 | `mcp-builder` (MCP server guide + eval), `designer` v4 (anti-AI-slop aesthetics) |
 | [Superpowers](https://github.com/jessed/superpowers) | MIT | `debugging` (rationalization prevention, defense-in-depth), `code-review` (anti-performative review), `qa-tester` (TDD discipline), `/brainstorm` (HARD-GATE) |
+| [EvoSkill](https://github.com/sentient-agi/EvoSkill) | Apache 2.0 | `self-improvement` (feedback descent, evolutionary loop), `prompt-engineer` (abstraction ladder), `ai-engineer` (skill evolution), `code-review` (root cause analysis) |
 
 ---
 
@@ -254,8 +256,8 @@ ag-kit help                       # Show all commands
 ## Stats
 
 ```
-21 skills · 15 workflows · 12 rules · 6 profiles
-5 absorbed sources · 2,600K+ knowledge base
+22 skills · 15 workflows · 14 rules · 6 profiles
+6 absorbed sources · 2,800K+ knowledge base
 ```
 
 ---
