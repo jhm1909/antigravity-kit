@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ─── Constants ───────────────────────────────────────────────────────
-const VERSION = '0.2.3';
+const VERSION = '0.3.0';
 const KIT_NAME = '@jhm1909/ag-kit';
 const AGENT_DIR = '.agent';
 
@@ -87,6 +87,68 @@ function copyDir(src, dest, allowedDirs = null, depth = 0) {
   return fileCount;
 }
 
+/**
+ * Get a simple hash of file content for comparison
+ */
+function fileHash(filePath) {
+  const content = fs.readFileSync(filePath);
+  let hash = 0;
+  for (let i = 0; i < content.length; i++) {
+    hash = ((hash << 5) - hash + content[i]) | 0;
+  }
+  return hash;
+}
+
+/**
+ * Recursively diff source vs target, returning lists of new/changed/same files
+ */
+function diffDir(src, dest, prefix = '') {
+  const result = { added: [], updated: [], unchanged: [], skipped: [] };
+  if (!fs.existsSync(src)) return result;
+
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+
+  for (const entry of entries) {
+    if (entry.name === 'tmp' || entry.name === 'templates') continue;
+
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    const relPath = prefix ? `${prefix}/${entry.name}` : entry.name;
+
+    if (entry.isDirectory()) {
+      const sub = diffDir(srcPath, destPath, relPath);
+      result.added.push(...sub.added);
+      result.updated.push(...sub.updated);
+      result.unchanged.push(...sub.unchanged);
+      result.skipped.push(...sub.skipped);
+    } else {
+      if (!fs.existsSync(destPath)) {
+        result.added.push(relPath);
+      } else {
+        const srcHash = fileHash(srcPath);
+        const destHash = fileHash(destPath);
+        if (srcHash !== destHash) {
+          result.updated.push(relPath);
+        } else {
+          result.unchanged.push(relPath);
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Copy a single file, creating parent dirs as needed
+ */
+function copyFile(src, dest) {
+  const dir = path.dirname(dest);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.copyFileSync(src, dest);
+}
 /**
  * Load skills-manifest.json from package
  */
@@ -170,7 +232,7 @@ function cmdInit(args) {
 
   // Copy .agent/ directory
   const fileCount = copyDir(SOURCE_AGENT_DIR, targetAgentDir, allowedSkills);
-  
+
   log();
   success(`${c.bold}Agent kit installed!${c.reset} (${fileCount} files)`);
   log();
@@ -205,7 +267,7 @@ function cmdList() {
   for (const [key, profile] of Object.entries(profiles)) {
     const skills = profile.skills.join(', ');
     const optional = profile.optional ? ` ${c.dim}+ optional: ${profile.optional.join(', ')}${c.reset}` : '';
-    
+
     log(`  ${c.bold}${c.cyan}${key}${c.reset}`);
     log(`  ${profile.description}`);
     log(`  ${c.dim}Skills: ${skills}${optional}${c.reset}`);
@@ -243,14 +305,14 @@ function cmdStatus() {
   const workflowsDir = path.join(targetAgentDir, 'workflows');
   const rulesDir = path.join(targetAgentDir, 'rules');
 
-  const skillCount = fs.existsSync(skillsDir) 
-    ? fs.readdirSync(skillsDir, { withFileTypes: true }).filter(d => d.isDirectory()).length 
+  const skillCount = fs.existsSync(skillsDir)
+    ? fs.readdirSync(skillsDir, { withFileTypes: true }).filter(d => d.isDirectory()).length
     : 0;
-  const workflowCount = fs.existsSync(workflowsDir) 
-    ? fs.readdirSync(workflowsDir).filter(f => f.endsWith('.md')).length 
+  const workflowCount = fs.existsSync(workflowsDir)
+    ? fs.readdirSync(workflowsDir).filter(f => f.endsWith('.md')).length
     : 0;
-  const ruleCount = fs.existsSync(rulesDir) 
-    ? fs.readdirSync(rulesDir).filter(f => f.endsWith('.md')).length 
+  const ruleCount = fs.existsSync(rulesDir)
+    ? fs.readdirSync(rulesDir).filter(f => f.endsWith('.md')).length
     : 0;
 
   const hasManifest = fs.existsSync(manifestPath);
@@ -272,6 +334,101 @@ function cmdVerify() {
   require(verifyPath);
 }
 
+function cmdUpdate(args) {
+  const targetDir = process.cwd();
+  const targetAgentDir = path.join(targetDir, AGENT_DIR);
+  const force = args.force;
+
+  // Check if kit is installed
+  if (!fs.existsSync(targetAgentDir)) {
+    error('Agent kit is not installed in this directory.');
+    log(`  Run ${c.bold}ag-kit init${c.reset} to install first.`);
+    process.exit(1);
+  }
+
+  // Check source
+  if (!fs.existsSync(SOURCE_AGENT_DIR)) {
+    error('Agent kit source not found. Package may be corrupted.');
+    process.exit(1);
+  }
+
+  // Check installed version from manifest
+  const installedManifest = path.join(targetAgentDir, 'skills-manifest.json');
+  let installedVersion = 'unknown';
+  if (fs.existsSync(installedManifest)) {
+    try {
+      const m = JSON.parse(fs.readFileSync(installedManifest, 'utf-8'));
+      installedVersion = m.version || 'unknown';
+    } catch (e) { /* ignore */ }
+  }
+
+  info(`Installed version: ${c.bold}${installedVersion}${c.reset}`);
+  info(`Available version: ${c.bold}${VERSION}${c.reset}`);
+  log();
+
+  // Diff files
+  const diff = diffDir(SOURCE_AGENT_DIR, targetAgentDir);
+
+  if (diff.added.length === 0 && diff.updated.length === 0) {
+    success('Already up to date! No changes needed.');
+    log();
+    return;
+  }
+
+  // Show what will change
+  if (diff.added.length > 0) {
+    log(`${c.bold}${c.green}  New files (${diff.added.length}):${c.reset}`);
+    for (const f of diff.added) {
+      log(`    ${c.green}+${c.reset} ${f}`);
+    }
+    log();
+  }
+
+  if (diff.updated.length > 0) {
+    log(`${c.bold}${c.yellow}  Changed files (${diff.updated.length}):${c.reset}`);
+    for (const f of diff.updated) {
+      log(`    ${c.yellow}~${c.reset} ${f}`);
+    }
+    log();
+  }
+
+  if (!force) {
+    // Non-force mode: only copy new files, skip changed
+    info('Non-force mode: adding new files only, skipping changed files.');
+    info(`Use ${c.bold}ag-kit update --force${c.reset} to also overwrite changed files.`);
+    log();
+
+    let copied = 0;
+    for (const f of diff.added) {
+      const srcPath = path.join(SOURCE_AGENT_DIR, f);
+      const destPath = path.join(targetAgentDir, f);
+      copyFile(srcPath, destPath);
+      copied++;
+    }
+
+    if (copied > 0) {
+      success(`Added ${c.bold}${copied}${c.reset} new files.`);
+    }
+    if (diff.updated.length > 0) {
+      warn(`Skipped ${diff.updated.length} changed files (use --force to overwrite).`);
+    }
+  } else {
+    // Force mode: copy both new and changed files
+    let copied = 0;
+    for (const f of [...diff.added, ...diff.updated]) {
+      const srcPath = path.join(SOURCE_AGENT_DIR, f);
+      const destPath = path.join(targetAgentDir, f);
+      copyFile(srcPath, destPath);
+      copied++;
+    }
+
+    success(`Updated ${c.bold}${copied}${c.reset} files (${diff.added.length} new, ${diff.updated.length} changed).`);
+  }
+
+  log();
+  log(`${c.dim}  ${diff.unchanged.length} files unchanged${c.reset}`);
+  log();
+}
 
 function cmdHelp() {
   banner();
@@ -281,6 +438,8 @@ function cmdHelp() {
   log(`  ${c.cyan}init${c.reset}                    Install the agent kit in current directory`);
   log(`  ${c.cyan}init --profile <name>${c.reset}   Install specific profile (e.g., web-frontend)`);
   log(`  ${c.cyan}init --force${c.reset}             Overwrite existing installation`);
+  log(`  ${c.cyan}update${c.reset}                   Smart update — add new files, preserve customizations`);
+  log(`  ${c.cyan}update --force${c.reset}            Update all files including changed ones`);
   log(`  ${c.cyan}list${c.reset}                     Show available profiles and skills`);
   log(`  ${c.cyan}status${c.reset}                   Check installed kit version and stats`);
   log(`  ${c.cyan}verify${c.reset}                   Run kit integrity checks`);
@@ -288,6 +447,7 @@ function cmdHelp() {
   log();
   log(`${c.bold}Examples:${c.reset}`);
   log(`  ${c.dim}$ npx ${KIT_NAME} init${c.reset}`);
+  log(`  ${c.dim}$ npx ${KIT_NAME} update${c.reset}`);
   log(`  ${c.dim}$ npx ${KIT_NAME} init --profile fullstack-saas${c.reset}`);
   log(`  ${c.dim}$ npx ${KIT_NAME} list${c.reset}`);
   log();
@@ -301,7 +461,7 @@ function parseArgs(argv) {
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    
+
     if (arg === '--help' || arg === '-h') {
       result.command = 'help';
     } else if (arg === '--version' || arg === '-v') {
@@ -329,6 +489,9 @@ function main() {
   switch (args.command) {
     case 'init':
       cmdInit(args);
+      break;
+    case 'update':
+      cmdUpdate(args);
       break;
     case 'list':
       cmdList();

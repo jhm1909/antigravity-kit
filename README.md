@@ -246,8 +246,11 @@ Skills follow the [agentskills.io](https://agentskills.io) specification.
 ag-kit init                       # Install full kit
 ag-kit init --profile <name>      # Install specific profile
 ag-kit init --force               # Overwrite existing installation
+ag-kit update                     # Smart update — add new files only
+ag-kit update --force             # Update all files including changed
 ag-kit list                       # Show available profiles and skills
 ag-kit status                     # Check installed version
+ag-kit verify                     # Run integrity checks
 ag-kit help                       # Show all commands
 ```
 
