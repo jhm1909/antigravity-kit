@@ -4,6 +4,20 @@ description: Analyze ideas with the user and create preliminary high-level docum
 
 # Brainstorm Workflow
 
+## HARD-GATE: Design Before Implementation
+
+> [!CAUTION]
+> Do NOT invoke any implementation skill, write any code, scaffold any project, or take
+> any implementation action until you have presented a design and the user has approved it.
+> This applies to EVERY request regardless of perceived simplicity.
+
+**Anti-Pattern: "This Is Too Simple To Need A Design"**
+Every project goes through this process. A todo list, a single-function utility, a config change — all of them.
+"Simple" projects are where unexamined assumptions cause the most wasted work.
+The design can be short (a few sentences for truly simple projects), but you MUST present it and get approval.
+
+---
+
 ## MCP Usage Guidelines
 
 | MCP Tool                                     | When to Use                                            | Example                                 |
@@ -32,9 +46,12 @@ description: Analyze ideas with the user and create preliminary high-level docum
    - Verify technical feasibility.
 
 3. **Clarify (Interaction)**:
-   - Summarize findings in an artifact.
-   - Ask specific questions to resolve ambiguities.
-   - **WAIT** for user response.
+    - **ONE question per message** — don't overwhelm with multiple questions
+    - Prefer **multiple choice** questions when possible (easier to answer than open-ended)
+    - If a topic needs more exploration, break it into multiple questions
+    - Summarize findings in an artifact.
+    - Ask specific questions to resolve ambiguities.
+    - **WAIT** for user response.
 
 4. **Evaluation**:
    - New info? → **GO TO 1.1** (Repeat).

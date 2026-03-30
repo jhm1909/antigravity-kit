@@ -126,6 +126,12 @@ When auditing code security, check:
 | `supply-chain-audit.md` | Dependency risk scoring (Trail of Bits) |
 | `static-analysis.md` | Semgrep scanning workflow (Trail of Bits) |
 
+| 	dd-discipline.md | Red-Green-Refactor cycle, Iron Law, rationalization prevention |
+
+| 	dd-discipline.md | Red-Green-Refactor cycle, Iron Law, rationalization prevention |
+
+| tdd-discipline.md | Red-Green-Refactor cycle, Iron Law, rationalization prevention |
+
 ## Related Skills
 
 - [[frontend-developer]] ??Component testing

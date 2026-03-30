@@ -51,7 +51,14 @@ function checkSkills(agentDir) {
       const hasDesc = /^description:/m.test(content);
 
       if (hasFrontmatter && hasName && hasDesc) {
-        pass(`${skill.name}/SKILL.md — valid`);
+        // Token economy check: warn if SKILL.md is too verbose
+        const lineCount = content.split('\n').length;
+        if (lineCount > 300) {
+          warn(`${skill.name}/SKILL.md — valid but verbose (${lineCount} lines). Consider splitting into references/`);
+          warned++;
+        } else {
+          pass(`${skill.name}/SKILL.md — valid`);
+        }
         passed++;
       } else {
         warn(`${skill.name}/SKILL.md — missing frontmatter fields (name/description)`);
