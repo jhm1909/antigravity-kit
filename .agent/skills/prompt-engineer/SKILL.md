@@ -27,6 +27,7 @@ Designing effective prompts and agent skills for AI-driven development.
 | Capability | Location | Use For |
 |:-----------|:---------|:--------|
 | Skill Creator | `skill-creator/` | Authoring new skills for the framework |
+| Prompt Optimization | `references/prompt-optimization.md` | Systematic prompt improvement with abstraction ladder |
 | Prompt Templates | `references/prompt-templates.md` | Reusable prompt patterns |
 
 ## Using Sub-capabilities
